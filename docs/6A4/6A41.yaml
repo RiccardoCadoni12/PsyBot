@@ -1,0 +1,16 @@
+disturbo: Catatonia indotta da sostanze o farmaci 
+codice: 6A41
+gruppo_superiore: Catatonia
+livello: 2
+esclusioni: 
+  - Sindrome maligna neurolettica
+  - Sindrome serotoninergica
+descrizione: >
+    La catatonia indotta da sostanze o farmaci è una sindrome caratterizzata principalmente da disturbi psicomotori, dalla co-comparsa di diversi sintomi di attività psicomotoria diminuita, aumentata o anormale, che si sviluppa durante o subito dopo l'intossicazione o l'astinenza da alcune sostanze psicoattive, tra cui fenciclidina (PCP), cannabis, allucinogeni come mescalina o LSD, cocaina e MDMA o droghe correlate, o durante l'uso di alcuni farmaci psicoattivi e non psicoattivi (ad esempio farmaci antipsicotici, benzodiazepine, steroidi, disulfiram, ciprofloxacina).
+requisiti diagnostici: >
+    I sintomi catatonici si sviluppano durante o subito dopo l'intossicazione o l'astinenza da una specifica sostanza psicoattiva o dall'uso di un farmaco. Le sostanze che possono essere associate alla catatonia includono oppioidi, fenciclidina (PCP), cannabis, cocaina, MDMA o droghe correlate e allucinogeni come mescalina o LSD. 
+    La catatonia può anche essere associata ad alcuni farmaci psicoattivi e non psicoattivi (ad esempio, farmaci antipsicotici, benzodiazepine, steroidi, disulfiram, ciprofloxacina).
+    L'intensità o la durata dei sintomi catatonici è sostanzialmente superiore a sintomi simili caratteristici dell'intossicazione o dell'astinenza dovuti alla sostanza specificata (ad esempio, stupore durante l'intossicazione da oppioidi; agitazione psicomotoria e iperattività autonomica durante l'astinenza da alcol).
+    La sostanza specificata, nonché la quantità e la durata del suo utilizzo, devono essere in grado di produrre sintomi catatonici.
+    I sintomi non sono completamente spiegati dal delirium, da un altro disturbo mentale (ad esempio, schizofrenia o altro disturbo psicotico primario, un disturbo dell'umore, un disturbo dello spettro autistico) o non sono la conseguenza patofisiologica diretta di una condizione medica.
+    I sintomi sono sufficientemente gravi da richiedere specifica attenzione clinica.

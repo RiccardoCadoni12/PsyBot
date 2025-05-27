@@ -1,0 +1,19 @@
+disturbo: Delirio 
+codice: 6D70
+gruppo_superiore: Disturbi neurocognitivi
+livello: 2
+descrizione: >
+    Il delirio è caratterizzato da un disturbo dell'attenzione, dell'orientamento e della consapevolezza che si sviluppa in un breve lasso di tempo, presentandosi tipicamente come significativa confusione o compromissione neurocognitiva globale, con sintomi transitori che possono variare a seconda della condizione causale o dell'eziologia sottostante. 
+    Il delirio include spesso disturbi del comportamento e delle emozioni e può includere compromissione in più domini cognitivi. 
+    Può essere presente anche un disturbo del ciclo sonno-veglia, inclusa una riduzione del risveglio ad esordio acuto o una perdita totale del sonno con inversione del ciclo sonno-veglia. 
+    Il delirio può essere causato dagli effetti fisiologici diretti di una condizione medica non classificata tra i disturbi mentali, comportamentali o del neurosviluppo, dagli effetti fisiologici diretti di una sostanza o di un farmaco, inclusa l'astinenza, o da fattori eziologici multipli o sconosciuti.
+requisiti diagnostici: >
+    Disturbo dell'attenzione, dell'orientamento e della consapevolezza che si sviluppa in un breve lasso di tempo (ad esempio, entro ore o giorni), che in genere si manifesta come confusione significativa o compromissione neurocognitiva globale con sintomi transitori che possono variare a seconda della condizione causale o dell'eziologia sottostante.
+    Il disturbo rappresenta un cambiamento rispetto al funzionamento di base dell'individuo.
+    Il delirio può essere causato dagli effetti fisiologici diretti di una condizione medica non classificata tra i disturbi mentali, comportamentali o neuroevolutivi, dagli effetti fisiologici diretti di una sostanza o di un farmaco, inclusa l'astinenza, o da fattori eziologici multipli o sconosciuti.
+    I sintomi non sono meglio spiegati da un disturbo neurocognitivo preesistente o in evoluzione (ad esempio disturbo amnesico, disturbo neurocognitivo lieve o demenza) o da un altro disturbo mentale (ad esempio schizofrenia o altro disturbo psicotico primario, un disturbo dell'umore, un disturbo da stress post-traumatico, un disturbo dissociativo).
+    I sintomi non sono meglio spiegabili con una tipica sindrome da intossicazione da sostanze o astinenza da una sostanza o un farmaco di cui si sa la presenza, sebbene il delirio possa manifestarsi come complicazione di stati di intossicazione o astinenza (vedere Delirio dovuto a sostanze psicoattive, compresi i farmaci, di seguito).
+sottocategorie:
+  - Delirio dovuto a malattia classificata altrove
+  - Delirio dovuto a sostanze psicoattive, compresi i farmaci
+  - Delirio dovuto a molteplici fattori eziologici

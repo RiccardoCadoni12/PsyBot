@@ -1,0 +1,37 @@
+disturbo: Disturbi dovuti all'uso di sostanze
+codice: 6C4
+gruppo_superiore: Disturbi dovuti all'uso di sostanze o a comportamenti di dipendenza
+livello: 2
+descrizione: >
+    I disturbi dovuti all'uso di sostanze includono i disturbi derivanti dall'uso singolo o ripetuto di sostanze con proprietà psicoattive, inclusi alcuni farmaci. 
+    Sono inclusi i disturbi correlati a quattordici classi o gruppi di sostanze psicoattive. 
+    In genere, l'uso iniziale di queste sostanze produce effetti psicoattivi piacevoli o piacevoli, che risultano gratificanti e rinforzanti con l'uso ripetuto. 
+    Con l'uso continuato, molte delle sostanze incluse hanno la capacità di produrre dipendenza. 
+    Hanno anche il potenziale di causare numerose forme di danno, sia alla salute mentale che fisica. 
+    In questo gruppo sono inclusi anche i disturbi dovuti all'uso dannoso non medico di sostanze non psicoattive.
+requisiti diagnostici: >
+    I disturbi dovuti all'uso di sostanze includono i disturbi derivanti dall'uso singolo o ripetuto di sostanze con proprietà psicoattive, inclusi alcuni farmaci. 
+    Sono inclusi i disturbi correlati a quattordici classi o gruppi di sostanze psicoattive che hanno importanti conseguenze cliniche e di salute pubblica, e sono disponibili categorie anche per altre sostanze specifiche.
+    In genere, l'uso iniziale di queste sostanze produce effetti psicoattivi piacevoli o piacevoli, che risultano gratificanti e rinforzanti con l'uso ripetuto. 
+    Con l'uso continuato, molte delle sostanze incluse possono indurre dipendenza. 
+    Possono anche causare numerose forme di danno, sia alla salute mentale che fisica. 
+    Anche i disturbi dovuti all'uso non terapeutico dannoso di sostanze non psicoattive (ad esempio, lassativi, ormone della crescita, eritropoietina e farmaci antinfiammatori non steroidei) sono inclusi in questo gruppo.
+sottocategorie:
+  - Disturbi dovuti all'uso di alcol
+  - Disturbi dovuti all'uso di cannabis
+  - Disturbi dovuti all'uso di cannabinoidi sintetici
+  - Disturbi dovuti all'uso di oppioidi
+  - Disturbi dovuti all'uso di sedativi, ipnotici o ansiolitici
+  - Disturbi dovuti all'uso di cocaina
+  - Disturbi dovuti all'uso di stimolanti, tra cui anfetamine, metanfetamina o metcatinone
+  - Disturbi dovuti all'uso di catinoni sintetici
+  - Disturbi dovuti all'uso di caffeina
+  - Disturbi dovuti all'uso di allucinogeni
+  - Disturbi dovuti all'uso di nicotina
+  - Disturbi dovuti all'uso di inalanti volatili
+  - Disturbi dovuti all'uso di MDMA o droghe correlate, incluso MDA
+  - Disturbi dovuti all'uso di droghe dissociative, tra cui ketamina e fenciclidina [PCP]
+  - Disturbi dovuti all'uso di altre sostanze psicoattive specificate, inclusi i farmaci
+  - Disturbi dovuti all'uso di più sostanze psicoattive specificate, inclusi i farmaci
+  - Disturbi dovuti all'uso di sostanze psicoattive sconosciute o non specificate
+  - Disturbi dovuti all'uso di sostanze non psicoattive

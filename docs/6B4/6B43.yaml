@@ -1,0 +1,24 @@
+disturbo: Disturbo dell'adattamento
+codice: 6B43 
+gruppo_superiore: Disturbi specificamente associati allo stress
+livello: 2
+esclusioni: 
+  - Disturbo d'ansia da separazione dell'infanzia 
+  - Disturbo depressivo ricorrente 
+  - Disturbo depressivo a episodio singolo 
+  - Disturbo da lutto prolungato 
+  - Lutto non complicato 
+  - Burnout 
+  - Reazione acuta da stress 
+descrizione: >
+    Il disturbo dell'adattamento è una reazione disadattiva a uno o più fattori stressanti psicosociali identificabili (ad esempio, divorzio, malattia o disabilità, problemi socio-economici, conflitti in casa o sul lavoro) che di solito emerge entro un mese dall'evento stressante. 
+    Il disturbo è caratterizzato dalla preoccupazione per l'evento stressante o per le sue conseguenze, tra cui preoccupazione eccessiva, pensieri ricorrenti e angoscianti riguardo all'evento stressante, o ruminazione costante sulle sue implicazioni, nonché dall'incapacità di adattarsi all'evento stressante che causa una compromissione significativa del funzionamento personale, familiare, sociale, educativo, lavorativo o di altre aree importanti. 
+    I sintomi non sono meglio spiegati da un altro disturbo mentale (ad esempio, disturbo dell'umore, un altro disturbo specificamente associato allo stress) e in genere si risolvono entro 6 mesi, a meno che l'evento stressante non persista per una durata maggiore.
+requisiti diagnostici: >
+    Una reazione disadattiva a uno o più fattori di stress psicosociale identificabili (ad esempio, un singolo evento stressante, una difficoltà psicosociale in corso o una combinazione di situazioni di vita stressanti) che di solito emerge entro un mese dall'evento stressante. 
+    Esempi includono divorzio o fine di una relazione, perdita del lavoro, diagnosi di una malattia, recente insorgenza di una disabilità e conflitti in ambito domestico o lavorativo.
+    La reazione allo stressore è caratterizzata dalla preoccupazione per lo stressore stesso o per le sue conseguenze, tra cui ansia eccessiva, pensieri ricorrenti e angoscianti sullo stressore o costante riflessione sulle sue implicazioni.
+    I sintomi non sono meglio spiegabili con un altro disturbo mentale (ad esempio, un disturbo dell'umore, un altro disturbo specificamente associato allo stress).
+    Una volta cessato lo stress e le sue conseguenze, i sintomi scompaiono entro 6 mesi.
+    L'incapacità di adattarsi allo stressor si traduce in una significativa compromissione del funzionamento personale, familiare, sociale, educativo, lavorativo o di altre aree importanti. 
+    Se il funzionamento viene mantenuto, è solo attraverso un significativo sforzo aggiuntivo.

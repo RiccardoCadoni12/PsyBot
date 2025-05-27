@@ -1,0 +1,13 @@
+disturbo: Disturbi dell'eliminazione
+livello: 1
+descrizione: >
+    I disturbi dell'evacuazione includono la ripetuta emissione di urina nei vestiti o nel letto (enuresi) e la ripetuta evacuazione di feci in luoghi inappropriati (encopresi). 
+    I disturbi dell'evacuazione dovrebbero essere diagnosticati solo dopo che l'individuo ha raggiunto un'età evolutiva in cui la continenza è normalmente prevista (5 anni per l'enuresi e 4 anni per l'encopresi). 
+    L'incontinenza urinaria o fecale può essere presente dalla nascita (ovvero, un'estensione atipica della normale incontinenza infantile), oppure può essere insorta dopo un periodo di controllo acquisito della vescica o dell'intestino. 
+    Un disturbo dell'evacuazione non dovrebbe essere diagnosticato se il comportamento è interamente attribuibile a un'altra condizione di salute che causa incontinenza, anomalie congenite o acquisite del tratto urinario o dell'intestino, o uso eccessivo di lassativi o diuretici.
+requisiti diagnostici: >
+    I disturbi dell'evacuazione includono la ripetuta evacuazione di urina nel letto o nei vestiti (enuresi) e la ripetuta evacuazione di feci in luoghi inappropriati (encopresi). 
+    Queste condizioni si verificano in individui in età evolutiva, quando ci si aspetta che la continenza urinaria e fecale sia stata normalmente raggiunta, e possono essere volontarie o involontarie.
+sottocategorie:
+  - Enuresi
+  - Encopresi

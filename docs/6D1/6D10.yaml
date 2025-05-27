@@ -1,0 +1,21 @@
+disturbo: Disturbo della personalità 
+codice: 6D10
+gruppo_superiore: Disturbi della personalità e tratti correlati
+livello: 2
+descrizione: >
+    Il disturbo della personalità è caratterizzato da problemi nel funzionamento di aspetti del sé (ad es. identità, autostima, accuratezza della visione di sé, autodirezione) e/o disfunzioni interpersonali (ad es. capacità di sviluppare e mantenere relazioni strette e reciprocamente soddisfacenti, capacità di comprendere le prospettive altrui e di gestire i conflitti nelle relazioni) che persistono per un periodo di tempo prolungato (ad es. 2 anni o più). 
+    Il disturbo si manifesta in modelli di cognizione, esperienza emotiva, espressione emotiva e comportamento che sono disadattivi (ad es., inflessibili o scarsamente regolati) e si manifesta in una gamma di situazioni personali e sociali (vale a dire, non è limitato a relazioni o ruoli sociali specifici). 
+    I modelli di comportamento che caratterizzano il disturbo non sono appropriati allo sviluppo e non possono essere spiegati principalmente da fattori sociali o culturali, incluso il conflitto socio-politico. 
+    Il disturbo è associato a notevole disagio o compromissione significativa del funzionamento personale, familiare, sociale, educativo, lavorativo o di altre aree importanti.
+requisiti diagnostici: >
+    Un disturbo duraturo caratterizzato da problemi nel funzionamento di aspetti del sé (ad esempio, identità, autostima, accuratezza della visione di sé, autodirezione) e/o disfunzione interpersonale (ad esempio, capacità di sviluppare e mantenere relazioni strette e reciprocamente soddisfacenti, capacità di comprendere le prospettive degli altri e di gestire i conflitti nelle relazioni).
+    Il disturbo persiste per un periodo di tempo prolungato (ad esempio, dura 2 anni o più).
+    Il disturbo si manifesta in modelli di cognizione, esperienza emotiva, espressione emotiva e comportamento che sono disadattivi (ad esempio, inflessibili o scarsamente regolati).
+    Il disturbo si manifesta in una serie di situazioni personali e sociali (vale a dire, non è limitato a relazioni o ruoli sociali specifici), sebbene possa essere costantemente evocato da particolari tipi di circostanze e non da altri.
+    I sintomi non sono dovuti agli effetti diretti di un farmaco o di una sostanza, compresi gli effetti dell'astinenza, e non sono meglio attribuibili a un altro disturbo mentale, a una malattia del sistema nervoso o a un'altra condizione medica.
+    Il disturbo è associato a notevole disagio o compromissione significativa del funzionamento personale, familiare, sociale, educativo, occupazionale o di altre aree importanti.
+    Il disturbo della personalità non deve essere diagnosticato se i modelli di comportamento che caratterizzano il disturbo della personalità sono appropriati dal punto di vista dello sviluppo (ad es. problemi correlati allo stabilire un'identità indipendente durante l'adolescenza) o possono essere spiegati principalmente da fattori sociali o culturali, tra cui il conflitto socio-politico.
+sottocategorie:
+  - Disturbo lieve della personalità
+  - Disturbo moderato della personalità
+  - Disturbo grave della personalità

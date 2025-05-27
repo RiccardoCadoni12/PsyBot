@@ -1,0 +1,11 @@
+disturbo: Catatonia associata ad un altro disturbo mentale 
+codice: 6A40
+gruppo_superiore: Catatonia
+livello: 2
+descrizione: >
+    La catatonia associata a un altro disturbo mentale è una sindrome caratterizzata principalmente da disturbi psicomotori, dalla co-comparsa di diversi sintomi di attività psicomotoria diminuita, aumentata o anormale, che si verifica nel contesto di un altro disturbo mentale, come la schizofrenia o altri disturbi psicotici primari, disturbi dell'umore e disturbi dello sviluppo neurologico, in particolare il disturbo dello spettro autistico.
+requisiti diagnostici: >
+    Sono soddisfatti i requisiti diagnostici generali per la catatonia.
+    I sintomi catatonici si sviluppano nel contesto di un altro disturbo mentale, come la schizofrenia o un altro disturbo psicotico primario, un disturbo dell'umore o un disturbo dello spettro autistico.
+    I sintomi non sono completamente spiegati dal delirium, dagli effetti di un farmaco o di una sostanza, compresi gli effetti dell'astinenza, o da un disturbo del movimento primario classificato nel capitolo sulle malattie del sistema nervoso (ad esempio, morbo di Parkinson, morbo di Huntington).
+    I sintomi sono sufficientemente gravi da richiedere specifica attenzione clinica.

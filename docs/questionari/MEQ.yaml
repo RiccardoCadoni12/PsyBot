@@ -1,0 +1,16 @@
+Questionario: MEQ
+descrizione: >
+  Il Morningness-Eveningness Questionnaire (MEQ), sviluppato da Horne e Ostberg nel 1976, 
+  è uno strumento di autovalutazione composto da 19 domande che determinano la preferenza circadiana di un individuo, 
+  classificandolo come "mattiniero", "intermedio" o "serale". Il punteggio totale varia da 16 a 86. 
+  Studi hanno dimostrato che i tipi mattutini tendono ad avere un picco circadiano più precoce rispetto ai tipi serali.
+      
+cosa_misura: cronotipo (preferenza circadiana)
+valore_minimo: 16
+valore_massimo: 86
+valori_di_riferimento: 
+ - 16/30= tipo serale definito; 
+ - 31/41= tipo serale moderato; 
+ - 42/58= tipo intermedio; 
+ - 59/69= tipo mattutino moderato; 
+ - 70/86= tipo mattutino definito. 

@@ -1,0 +1,40 @@
+disturbo: Disturbo da deficit di attenzione e iperattività 
+codice: 6A05
+gruppo_superiore: Disturbi dello sviluppo neurologico
+livello: 2
+inclusioni: 
+  - Disturbo da deficit di attenzione con iperattività
+  - Sindrome da deficit di attenzione con iperattività
+descrizione: >
+    Il disturbo da deficit di attenzione e iperattività è caratterizzato da un modello persistente (almeno 6 mesi) di disattenzione e/o iperattività-impulsività che ha un impatto negativo diretto sul funzionamento accademico, professionale o sociale. 
+    Ci sono prove di una significativa disattenzione e/o sintomi di iperattività-impulsività prima dei 12 anni, in genere dalla prima età alla metà dell'infanzia, anche se alcuni individui possono prima venire all'attenzione clinica in seguito. 
+    Il grado di disattenzione e iperattività-impulsività è al di fuori dei limiti della variazione normale prevista per l'età e il livello di funzionamento intellettuale.
+    La disattenzione si riferisce alla difficoltà significativa nel sostenere l'attenzione a compiti che non forniscono un alto livello di stimolazione o ricompense frequenti, distrazione e problemi con l'organizzazione. 
+    L'iperattività si riferisce all'eccessiva attività motoria e alle difficoltà a rimanere fermi, più evidenti in situazioni strutturate che richiedono l'autocontrollo comportamentale. 
+    L'impulsività è una tendenza ad agire in risposta a stimoli immediati, senza deliberare o considerare i rischi e le conseguenze. 
+    L'equilibrio relativo e le manifestazioni specifiche delle caratteristiche disattente e iperattive-impulsive variano tra gli individui e possono cambiare nel corso dello sviluppo. 
+    Affinché possa essere fatta una diagnosi, le manifestazioni di disattenzione e/o iperattività-impulsività devono essere evidenti in più situazioni o impostazioni (ad esempio, casa, scuola, lavoro, con amici o parenti), ma è probabile che varino a seconda della struttura e delle esigenze dell'ambiente. 
+    I sintomi non sono meglio spiegati da un altro disturbo mentale, comportamentale o dello sviluppo neurologico e non sono dovuti all'effetto di una sostanza o di un farmaco.
+requisiti diagnostici: >
+    Un modello persistente (ad esempio, almeno 6 mesi) di sintomi di disattenzione e/o una combinazione di iperattività e sintomi di impulsività che è al di fuori dei limiti della normale variazione prevista per l'età e il livello di sviluppo intellettuale. 
+    I sintomi variano in base all'età cronologica e alla gravità del disturbo.
+    Diversi sintomi di disattenzione che sono persistenti e sufficientemente gravi da avere un impatto negativo diretto sul funzionamento accademico, professionale o sociale. 
+    I sintomi sono tipicamente dei seguenti gruppi:
+    Difficoltà a mantenere l'attenzione a compiti che non forniscono un alto livello di stimolazione o ricompensa o richiedono uno sforzo mentale sostenuto; mancanza di attenzione ai dettagli; commettere errori negligenti nei compiti scolastici o lavorativi; non completare i compiti.
+    Facilmente distratto da stimoli estranei o pensieri non correlati al compito a portata di mano; spesso non sembra ascoltare quando gli viene parlato direttamente; spesso sembra sognare ad occhi aperti o avere una mente altrove.
+    Perde le cose; è smemorato nelle attività quotidiane; ha difficoltà a ricordare di completare i compiti o le attività quotidiane imminenti; difficoltà a pianificare, gestire e organizzare i compiti scolastici, i compiti e altre attività.
+    Diversi sintomi di iperattività/impulsività che sono persistenti e sufficientemente gravi da avere un impatto negativo diretto sul funzionamento accademico, professionale o sociale. 
+    Questi tendono ad essere più evidenti in situazioni strutturate che richiedono l'autocontrollo comportamentale. 
+    I sintomi sono tipicamente dei seguenti gruppi:
+    Eccessiva attività motoria; lascia il posto quando ci si aspetta di stare fermi; spesso corre in giro; ha difficoltà a stare fermo senza agitarsi (bamini più piccoli); sentimenti di irrequietezza fisica, un senso di disagio con l'essere tranquillo o stare fermi (adolescenti e adulti).
+    Difficoltà a impegnarsi in attività in silenzio; parla troppo.
+    Si schiara risposte a scuola, commenti al lavoro; difficoltà ad aspettare in conversazioni, giochi o attività; interrompe o intromette in conversazioni o giochi di altri.
+    Una tendenza ad agire in risposta a stimoli immediati senza deliberare o considerare rischi e conseguenze (ad esempio, impegnarsi in comportamenti con potenziale di lesioni fisiche; decisioni impulsive; guida sconsiderata)
+    Evidenza di significativa disattenzione e/o sintomi di iperattività-impulsività prima dei 12 anni, anche se alcuni individui possono prima venire all'attenzione clinica più tardi nell'adolescenza o da adulti, spesso quando le richieste superano la capacità dell'individuo di compensare le limitazioni.
+    Le manifestazioni di disattenzione e/o iperattività-impulsività devono essere evidenti in più situazioni o contesti (ad esempio, casa, scuola, lavoro, con amici o parenti), ma è probabile che varino a seconda della struttura e delle esigenze dell'ambiente.
+    I sintomi non sono meglio spiegati da un altro disturbo mentale (ad esempio, un disturbo correlato all'ansia o alla paura, un disturbo neurocognitivo come il delirio).
+    I sintomi non sono dovuti agli effetti di una sostanza (ad esempio, cocaina) o di un farmaco (ad esempio, broncodilatatori, farmaci sostitutivi della tiroide) sul sistema nervoso centrale, inclusi gli effetti di astinenza, e non sono dovuti a una malattia del sistema nervoso.
+sottocategorie: 
+  - Disturbo da deficit di attenzione e iperattività, presentazione prevalentemente disattenta
+  - Disturbo da deficit di attenzione e iperattività, presentazione prevalentemente iperattiva-impulsiva
+  - Disturbo da deficit di attenzione e iperattività, presentazione combinata

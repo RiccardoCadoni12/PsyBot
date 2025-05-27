@@ -1,0 +1,24 @@
+disturbo: Amnesia dissociativa
+codice: 6B61 
+gruppo_superiore: Disturbi dissociativi
+livello: 2
+esclusioni:
+  - Amnesia NAS 
+  - Disturbo amnestico dovuto all'uso di alcol 
+  - Amnesia anterograda 
+  - Amnesia retrograda 
+  - Sindrome amnesica organica non alcolica
+  - Amnesia post-critica nell'epilessia 
+descrizione: >
+    L'amnesia dissociativa è caratterizzata dall'incapacità di ricordare importanti ricordi autobiografici, tipicamente di eventi traumatici o stressanti recenti, che è incompatibile con la normale dimenticanza. 
+    L'amnesia non si verifica esclusivamente durante un altro disturbo dissociativo e non è meglio spiegata da un altro disturbo mentale, comportamentale o del neurosviluppo. 
+    L'amnesia non è dovuta agli effetti diretti di una sostanza o di un farmaco sul sistema nervoso centrale, inclusi gli effetti dell'astinenza, e non è dovuta a una malattia del sistema nervoso o a un trauma cranico. 
+    L'amnesia determina una significativa compromissione del funzionamento personale, familiare, sociale, educativo, lavorativo o di altre aree importanti.
+requisiti diagnostici: >
+    Incapacità di ricordare importanti ricordi autobiografici, in genere di eventi traumatici o stressanti recenti, che è incompatibile con la normale dimenticanza.
+    La perdita di memoria non si verifica esclusivamente durante episodi di disturbo di trance, disturbo di trance da possessione, disturbo dissociativo dell'identità o disturbo dissociativo dell'identità parziale e non è meglio spiegata da un altro disturbo mentale (ad esempio, disturbo da stress post-traumatico, disturbo da stress post-traumatico complesso, un disturbo neurocognitivo come la demenza).
+    I sintomi non sono dovuti agli effetti di una sostanza o di un farmaco sul sistema nervoso centrale (ad esempio, l'alcol), compresi gli effetti dell'astinenza, e non sono dovuti a una malattia del sistema nervoso (ad esempio, l'epilessia del lobo temporale), a un'altra condizione medica (ad esempio, un tumore al cervello) o a un trauma cranico.
+    La perdita di memoria comporta un deterioramento significativo delle funzioni personali, familiari, sociali, educative, occupazionali o di altri ambiti importanti.
+sottocategorie:
+  - Amnesia dissociativa con fuga dissociativa
+  - Amnesia dissociativa senza fuga dissociativa

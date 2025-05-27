@@ -1,0 +1,29 @@
+disturbo: Disturbo schizotipico 
+codice: 6A22
+gruppo_superiore: Schizofrenia o altri disturbi psicotici primari
+livello: 2
+inclusioni: Disturbo schizofrenico di personalità
+esclusioni: 
+  - Disturbo dello spettro autistico 
+  - Disturbo della personalità
+descrizione: >
+    Il disturbo schizotipico è caratterizzato da un modello duraturo (cioè caratteristico del funzionamento della persona per un periodo di almeno diversi anni) di eccentricità nel comportamento, nell'aspetto e nel linguaggio, accompagnati da distorsioni cognitive e percettive, convinzioni insolite e disagio con - e spesso ridotta capacità di - relazioni interpersonali. 
+    I sintomi possono includere affetto ristretto o inappropriato e anedonia. 
+    Possono verificarsi idee paranoiche, idee di riferimento o altri sintomi psicotici, comprese le allucinazioni in qualsiasi modalità, ma non sono di intensità o durata sufficiente per soddisfare i requisiti diagnostici della schizofrenia, del disturbo schizoaffettivo o del disturbo delirante. 
+    I sintomi causano disagio o menomazione in aree personali, familiari, sociali, educative, professionali o altre importanti aree di funzionamento.
+requisiti diagnostici: >
+    Un modello duraturo di discorso, percezioni, credenze e comportamenti insoliti che non sono di intensità o durata sufficiente per soddisfare i requisiti diagnostici della schizofrenia, del disturbo schizoaffettivo o del disturbo delirante. 
+    Il modello include molti dei seguenti sintomi:
+    Affetto ristretto, in modo tale che l'individuo appaia freddo e distantato;
+    Comportamento o aspetto strano, eccentrico, insolito o peculiare e incoerente con le norme culturali o subculturali;
+    Scarso rapporto con gli altri e tendenza al ritiro sociale;
+    Credenze insolite o pensiero magico che influenzano il comportamento della persona in modi incoerenti con le norme subculturali, ma non raggiungono i requisiti diagnostici per un'illusione;
+    Distorsioni percettive insolite come illusioni intense, depersonalizzazione, derealizzazione o allucinazioni uditive o altre allucinazioni;
+    Sospetto o idee paranoiche;
+    Pensiero vago, circostanziale, metaforico, troppo elaborato o stereotipato, si manifesta in un linguaggio strano senza grossolana incoerenza;
+    Ruminazioni ossessive senza la sensazione che l'ossessione sia estranea o indesiderata, spesso con contenuti dismorfici, sessuali o aggressivi del corpo.
+    L'individuo non ha mai soddisfatto i requisiti diagnostici per la schizofrenia, il disturbo schizoaffettivo o il disturbo delirante. 
+    Cioè, possono verificarsi delusioni transitorie, allucinazioni, disturbi formali del pensiero o esperienze di influenza, passività o controllo, ma non durano più di 1 mese.
+    I sintomi dovrebbero essere stati presenti, continuamente o episodicamente, per almeno 2 anni.
+    I sintomi causano disagio o menomazione in aree personali, familiari, sociali, educative, professionali o altre importanti aree di funzionamento.
+    I sintomi non sono una manifestazione di un'altra condizione medica (ad esempio, un tumore al cervello), non sono dovuti agli effetti di una sostanza o di un farmaco sul sistema nervoso centrale (ad esempio, corticosteroidi), compresi gli effetti di astinenza (ad esempio, dall'alcol) e non sono meglio spiegati da un altro disturbo mentale, comportamentale o neurosviluppo.

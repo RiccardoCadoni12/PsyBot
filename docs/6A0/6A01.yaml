@@ -1,0 +1,17 @@
+disturbo: Disturbi dello sviluppo del linguaggio o della parola
+codice: 6A01
+gruppo_superiore: Disturbi dello sviluppo neurologico
+livello: 2
+descrizione: >
+    I disturbi dello sviluppo del linguaggio o della parola sorgono nel periodo dello sviluppo e sono caratterizzati da difficoltà nella comprensione o nella produzione della parola e del linguaggio, oppure nell’uso del linguaggio nel contesto comunicativo, che eccedono le variazioni attese in base all’età e al livello di funzionamento intellettivo.
+    Le problematiche osservate nel linguaggio e nella parola non sono attribuibili a variazioni linguistiche di tipo regionale, sociale o culturale/etnico, né sono completamente spiegabili da anomalie anatomiche o neurologiche.
+    L’eziologia presunta dei disturbi dello sviluppo del linguaggio o della parola è complessa e, in molti casi individuali, rimane sconosciuta.
+requisiti diagnostici: >
+    I disturbi dello sviluppo del linguaggio o della parola sono caratterizzati da difficoltà nella comprensione o nella produzione della parola e del linguaggio, oppure nell’uso del linguaggio in contesto comunicativo.
+    Quando si valuta un individuo per possibili disturbi del linguaggio, è fondamentale considerare le variazioni linguistiche di tipo regionale, sociale o culturale/etnico (ad es. dialetti).
+    Ad esempio, i compiti di memoria fonologica possono fornire una valutazione meno soggetta a bias rispetto ai compiti lessicali.
+    Una storia linguistica completa che documenti tutte le lingue a cui il bambino è stato esposto sin dalla nascita può essere di supporto nel determinare se le variazioni linguistiche osservate siano meglio spiegabili come effetto del bilinguismo/multilinguismo piuttosto che come manifestazione di una vera e propria patologia del linguaggio.
+sottocategorie: 
+  - Disturbo dello sviluppo dei suoni del linguaggio
+  - Disturbo dello sviluppo della fluenza del linguaggio
+  - Disturbo dello sviluppo del linguaggio

@@ -1,0 +1,22 @@
+disturbo: Disturbo delirante 
+codice: 6A24
+gruppo_superiore: Schizofrenia o altri disturbi psicotici primari
+livello: 2
+descrizione: >
+    Il disturbo delirante è caratterizzato dallo sviluppo di un'ilusione o di un insieme di delusioni correlate, in genere persistente per almeno 3 mesi e spesso molto più a lungo, in assenza di un episodio di umore depressivo, maniacale o misto. 
+    Le illusioni sono variabili nel contenuto tra gli individui, ma in genere stabili all'interno degli individui, anche se possono evolversi nel tempo. 
+    Altri sintomi caratteristici della schizofrenia (cioè allucinazioni chiare e persistenti, sintomi negativi, pensiero disorganizzato o esperienze di influenza, passività o controllo) non sono presenti, anche se varie forme di disturbi percettivi (ad esempio allucinazioni, illusioni, errori di identificazione delle persone) tematicamente correlati all'illusione sono ancora coerenti con la diagnosi. 
+    A parte le azioni e gli atteggiamenti direttamente correlati all'illusione o al sistema delirante, l'affetto, il discorso e il comportamento sono in genere non influenzati. 
+    I sintomi non sono una manifestazione di un'altra condizione medica (ad esempio, un tumore al cervello) e non sono dovuti all'effetto di una sostanza o di un farmaco sul sistema nervoso centrale (ad esempio corticosteroidi), compresi gli effetti di astinenza (ad esempio l'astinenza da alcol).
+requisiti diagnostici: >
+    Presenza di un'illusione o di un insieme di illusioni correlate, che in genere persistono per almeno 3 mesi e spesso molto più a lungo, in assenza di un episodio depressivo, maniacale o misto.
+    Le illusioni sono variabili nel contenuto tra gli individui, pur mostrando una notevole stabilità all'interno degli individui, anche se possono evolversi nel tempo. 
+    Le forme comuni di illusioni includono persecutoria, somatica (ad esempio, la convinzione che gli organi siano in decomposizione o malfunzionanti nonostante il normale esame medico), grandiosa (ad esempio, la convinzione che si sia scoperto un elisir che dà vita eterna), gelosa (ad esempio, la convinzione ingiustificata che il proprio coniuge sia infedele) ed erotomania (cioè la convinzione che un'altra persona, di solito uno sconosciuto famoso o di alto livello, sia innamorata della persona che sperimenta l'illusione).
+    Assenza di allucinazioni chiare e persistenti, pensiero gravemente disorganizzato (disturbo formale del pensiero), esperienze di influenza, passività o controllo o sintomi negativi caratteristici della schizofrenia. 
+    Tuttavia, in alcuni casi, possono essere presenti allucinazioni specifiche tipicamente legate al contenuto delle illusioni (ad esempio, allucinazioni tattili nelle delusioni di essere infettati da parassiti o insetti).
+    A parte le azioni e gli atteggiamenti direttamente correlati al sistema delirante, l'affetto, il discorso e il comportamento in genere non sono influenzati.
+    I sintomi non sono una manifestazione di un'altra condizione medica (ad esempio, un tumore al cervello), non sono dovuti agli effetti di una sostanza o di un farmaco sul sistema nervoso centrale (ad esempio, corticosteroidi), compresi gli effetti di astinenza (ad esempio, dall'alcol) e non sono meglio spiegati da un altro disturbo mentale (ad esempio, un altro disturbo psicotico primario, un disturbo dell'umore, un disturbo ossessivo-compulsivo o correlato, un disturbo alimentare).
+sottocategorie: 
+  - Disturbo delirante, attualmente sintomatico
+  - Disturbo delirante, in parziale remissione
+  - Disturbo delirante, in piena remissione

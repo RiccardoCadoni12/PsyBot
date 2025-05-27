@@ -1,0 +1,19 @@
+disturbo: Fobia specifica
+codice: 6B03 
+gruppo_superiore: Disturbi legati all'ansia o alla paura
+livello: 2
+inclusioni: Fobia semplice
+esclusioni:
+  - Disturbo dismorfico corporeo 
+  - Ipocondriasi
+descrizione: >
+    La fobia specifica è caratterizzata da una paura o ansia marcata ed eccessiva che si manifesta costantemente in seguito all'esposizione o all'anticipazione dell'esposizione a uno o più oggetti o situazioni specifici (ad esempio, la vicinanza a determinati animali, il volo, le altezze, gli spazi chiusi, la vista di sangue o ferite) che è sproporzionata rispetto al pericolo reale. 
+    Gli oggetti o le situazioni fobici vengono evitati o altrimenti sopportati con intensa paura o ansia. 
+    I sintomi persistono per almeno diversi mesi e sono sufficientemente gravi da causare un disagio significativo o una compromissione significativa del funzionamento personale, familiare, sociale, scolastico, lavorativo o di altre aree importanti.
+requisiti diagnostici: >
+    Paura o ansia marcata ed eccessiva che si manifesta sistematicamente in seguito all'esposizione o all'anticipazione dell'esposizione a uno o più oggetti o situazioni specifici (ad esempio, vicinanza a certi tipi di animali, altezze, spazi chiusi, vista di sangue o ferite) e che è sproporzionata rispetto al pericolo reale rappresentato dall'oggetto o dalla situazione specifica.
+    L'oggetto o la situazione fobica vengono attivamente evitati o sopportati con intensa paura o ansia.
+    Un modello di paura, ansia o evitamento correlato a oggetti o situazioni specifici non è transitorio, vale a dire, persiste per un periodo di tempo prolungato (ad esempio, almeno diversi mesi).
+    I sintomi non sono meglio spiegabili con un altro disturbo mentale (ad esempio, disturbo d'ansia sociale, un disturbo psicotico primario).
+    I sintomi provocano un disagio significativo dovuto alla presenza di sintomi d'ansia persistenti o a una compromissione significativa del funzionamento personale, familiare, sociale, educativo, lavorativo o di altre aree importanti. 
+    Il mantenimento del funzionamento è possibile solo attraverso un significativo sforzo aggiuntivo.

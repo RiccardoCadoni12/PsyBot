@@ -1,0 +1,28 @@
+disturbo: Anoressia nervosa
+codice: 6B80 
+gruppo_superiore: Disturbi dell'alimentazione
+livello: 2
+esclusioni: Anoressia
+descrizione: >
+    L'anoressia nervosa è caratterizzata da un peso corporeo significativamente basso rispetto all'altezza, all'età e allo stadio di sviluppo dell'individuo, non dovuto ad altre condizioni di salute o alla mancanza di cibo. 
+    Una soglia comunemente utilizzata è un indice di massa corporea (IMC) inferiore a 18,5 kg/m² negli adulti e un IMC per età inferiore al 5° percentile nei bambini e negli adolescenti. 
+    Una rapida perdita di peso (ad esempio, più del 20% del peso corporeo totale entro 6 mesi) può sostituire la linea guida del basso peso corporeo, purché vengano soddisfatti altri requisiti diagnostici. 
+    Bambini e adolescenti possono mostrare un mancato aumento di peso come previsto in base alla traiettoria di sviluppo individuale piuttosto che una perdita di peso. 
+    Il basso peso corporeo è accompagnato da un modello persistente di comportamenti volti a impedire il ripristino del peso normale, che può includere comportamenti volti a ridurre l'apporto energetico (alimentazione limitata), comportamenti di eliminazione (ad esempio, vomito autoindotto, uso improprio di lassativi) e comportamenti volti ad aumentare il dispendio energetico (ad esempio, esercizio fisico eccessivo), tipicamente associati alla paura di aumentare di peso. 
+    Un peso o una forma corporea bassi sono centrali nell'autovalutazione della persona o vengono erroneamente percepiti come normali o addirittura eccessivi.
+requisiti diagnostici: >
+    Peso corporeo significativamente basso per altezza, età, fase di sviluppo o storia ponderale dell'individuo. 
+    Una soglia comunemente utilizzata è un indice di massa corporea (IMC) inferiore a 18,5 kg/m² negli adulti e un IMC per età inferiore al 5° percentile nei bambini e negli adolescenti. 
+    Una rapida perdita di peso (ad esempio, oltre il 20% del peso corporeo totale entro 6 mesi) può sostituire la caratteristica essenziale del basso peso corporeo, purché siano soddisfatti altri requisiti diagnostici. 
+    Bambini e adolescenti possono mostrare un mancato aumento di peso come previsto in base al percorso di sviluppo individuale piuttosto che una perdita di peso.
+    Il basso peso corporeo non è meglio attribuito ad un'altra condizione medica o alla mancanza di cibo.
+    Un modello persistente di alimentazione restrittiva o altri comportamenti volti a raggiungere o mantenere un peso corporeo anormalmente basso, tipicamente associato a un'estrema paura di aumentare di peso. 
+    I comportamenti possono essere volti a ridurre l'apporto energetico, attraverso il digiuno, la scelta di alimenti ipocalorici, l'assunzione eccessivamente lenta di piccole quantità di cibo e il nascondere o sputare il cibo, nonché comportamenti di eliminazione, come il vomito autoindotto e l'uso di lassativi, diuretici, clisteri o l'omissione di dosi di insulina nei soggetti con diabete. 
+    I comportamenti possono anche essere volti ad aumentare il dispendio energetico attraverso esercizio fisico eccessivo, iperattività motoria, esposizione deliberata al freddo e uso di farmaci che aumentano il dispendio energetico (ad esempio, stimolanti, farmaci per la perdita di peso, prodotti erboristici per la riduzione del peso, ormoni tiroidei).
+    Eccessiva preoccupazione per il peso o la forma del corpo. 
+    Un peso corporeo basso è sopravvalutato e centrale nell'autostima della persona, oppure il peso o la forma del corpo della persona sono erroneamente percepiti come normali o addirittura eccessivi. 
+    La preoccupazione per il peso o la forma, quando non esplicitamente segnalata, può manifestarsi con comportamenti come il controllo ripetuto del peso corporeo con la bilancia; il controllo ripetuto della propria forma corporea con un metro a nastro o il riflesso negli specchi; il monitoraggio costante del contenuto calorico degli alimenti o la ricerca di informazioni su come perdere peso; o con comportamenti di evitamento estremo, come il rifiuto di avere specchi in casa, l'evitamento di abiti attillati o il rifiuto di conoscere il proprio peso o di acquistare abiti con una taglia specifica.
+sottocategorie:
+  - Anoressia nervosa con peso corporeo significativamente basso
+  - Anoressia nervosa con peso corporeo pericolosamente basso
+  - Anoressia nervosa in fase di recupero con peso corporeo normale

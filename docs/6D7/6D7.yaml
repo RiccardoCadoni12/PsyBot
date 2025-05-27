@@ -1,0 +1,20 @@
+disturbo: Disturbi neurocognitivi
+livello: 1
+esclusioni: Disturbi dello sviluppo neurologico
+descrizione: >
+    I disturbi neurocognitivi sono caratterizzati da deficit clinici primari del funzionamento cognitivo di natura acquisita piuttosto che evolutiva. 
+    In altre parole, i disturbi neurocognitivi non includono i disturbi caratterizzati da deficit del funzionamento cognitivo presenti dalla nascita o che tipicamente insorgono durante il periodo dello sviluppo, che sono classificati nel gruppo dei disturbi del neurosviluppo. 
+    Piuttosto, i disturbi neurocognitivi rappresentano un declino rispetto a un livello di funzionamento precedentemente raggiunto. 
+    Sebbene i deficit cognitivi siano presenti in molti disturbi mentali (ad esempio, schizofrenia, disturbi bipolari), solo i disturbi le cui caratteristiche principali sono cognitive sono inclusi nel gruppo dei disturbi neurocognitivi. 
+    Nei casi in cui sia possibile determinare la patologia sottostante e l'eziologia dei disturbi neurocognitivi, l'eziologia identificata dovrebbe essere classificata separatamente.
+requisiti diagnostici: >
+    I disturbi neurocognitivi sono caratterizzati da deficit clinici primari del funzionamento neurocognitivo, di natura acquisita piuttosto che evolutiva. 
+    Il funzionamento neurocognitivo si riferisce specificamente alle abilità e capacità cognitive di origine neurologica che si ritiene siano direttamente correlate al funzionamento cerebrale, tra cui, a titolo esemplificativo ma non esaustivo, attenzione/concentrazione, memoria, linguaggio, capacità visuo-spaziali/percettive, velocità di elaborazione e funzioni esecutive (ad esempio, risoluzione dei problemi, capacità di giudizio).
+    I disturbi neurocognitivi rappresentano un declino rispetto a un livello di funzionamento precedentemente raggiunto. 
+    Questo raggruppamento non include i disturbi caratterizzati da deficit del funzionamento neurocognitivo presenti dalla nascita o che insorgono tipicamente durante il periodo dello sviluppo, che sono classificati nel gruppo dei Disturbi del Neurosviluppo. 
+    Sebbene i deficit cognitivi siano presenti in molti disturbi mentali (ad esempio, schizofrenia, disturbi bipolari), solo i disturbi le cui caratteristiche principali sono neurocognitive sono inclusi nel gruppo dei Disturbi Neurocognitivi.
+sottocategorie:
+  - Delirio
+  - Disturbo neurocognitivo lieve
+  - Disturbo amnesico
+  - Demenza

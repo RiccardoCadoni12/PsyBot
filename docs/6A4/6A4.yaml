@@ -1,0 +1,19 @@
+disturbo: Catatonia
+livello: 1
+esclusioni: Effetti nocivi di droghe, medicinali o sostanze biologiche, non classificati altrove
+descrizione: >
+    La catatonia è una sindrome caratterizzata principalmente da disturbi psicomotori, caratterizzata dalla co-comparsa di diversi sintomi di attività psicomotoria ridotta, aumentata o anormale. 
+    La valutazione della catatonia è complessa e richiede osservazione, colloquio ed esame obiettivo. La catatonia può manifestarsi nel contesto di un altro disturbo mentale, come la schizofrenia o altri disturbi psicotici primari, disturbi dell'umore e disturbi del neurosviluppo, in particolare il disturbo dello spettro autistico. 
+    La catatonia può anche svilupparsi durante o subito dopo l'intossicazione o l'astinenza da alcune sostanze psicoattive, tra cui fenciclidina (PCP), cannabis, allucinogeni come mescalina o LSD, cocaina e MDMA o droghe correlate, o durante l'uso di alcuni farmaci psicoattivi e non psicoattivi (ad esempio farmaci antipsicotici, benzodiazepine, steroidi, disulfiram, ciprofloxacina). 
+    Infine, la catatonia può verificarsi come conseguenza patofisiologica diretta di una condizione medica non classificata tra i disturbi mentali, comportamentali o del neurosviluppo. 
+    Esempi di condizioni mediche che possono essere associate alla catatonia includono chetoacidosi diabetica, ipercalcemia, encefalopatia epatica, omocistinuria, neoplasie, trauma cranico, malattie cerebrovascolari ed encefalite.
+requisiti diagnostici: >
+    La catatonia è una sindrome caratterizzata principalmente da disturbi psicomotori, caratterizzata dalla co-comparsa di diversi sintomi di attività psicomotoria ridotta, aumentata o anormale. 
+    La valutazione della catatonia è complessa e richiede osservazione, colloquio ed esame obiettivo. 
+    La catatonia può manifestarsi nel contesto di un altro disturbo mentale, come la schizofrenia o altri disturbi psicotici primari, disturbi dell'umore e disturbi del neurosviluppo, in particolare il disturbo dello spettro autistico. 
+    La catatonia può anche svilupparsi durante o subito dopo l'intossicazione o l'astinenza da alcune sostanze psicoattive, tra cui fenciclidina (PCP), cannabis, allucinogeni come mescalina o LSD, cocaina e MDMA o droghe correlate, o durante l'uso di alcuni farmaci psicoattivi e non psicoattivi (ad esempio, farmaci antipsicotici, benzodiazepine, steroidi, disulfiram, ciprofloxacina). 
+    Infine, la catatonia può verificarsi come conseguenza patofisiologica diretta di una condizione medica non classificata tra i disturbi mentali, comportamentali o del neurosviluppo. 
+    Esempi di condizioni mediche che possono essere associate alla catatonia includono chetoacidosi diabetica, ipercalcemia, encefalopatia epatica, omocistinuria, neoplasie, traumi cranici, malattie cerebrovascolari ed encefalite.
+sottocategorie:
+  - Catatonia associata a un altro disturbo mentale
+  - Catatonia indotta da sostanze o farmaci

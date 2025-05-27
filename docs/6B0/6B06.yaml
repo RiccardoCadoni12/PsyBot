@@ -1,0 +1,18 @@
+disturbo: Mutismo selettivo
+codice: 6B06 
+gruppo_superiore: Disturbi legati all'ansia o alla paura
+livello: 2
+esclusioni:
+  - Schizofrenia 
+  - mutismo transitorio come parte dell'ansia da separazione nei bambini piccoli 
+  - Disturbo dello spettro autistico 
+descrizione: >
+    Il mutismo selettivo è caratterizzato da una selettività costante nel parlare, tale per cui il bambino dimostra un'adeguata competenza linguistica in specifiche situazioni sociali, tipicamente a casa, ma non riesce a parlare in altre, tipicamente a scuola. 
+    Il disturbo dura almeno un mese, non è limitato al primo mese di scuola ed è di gravità sufficiente a interferire con il rendimento scolastico o con la comunicazione sociale. 
+    L'incapacità di parlare non è dovuta a una mancanza di conoscenza o di dimestichezza con il linguaggio parlato richiesto nella situazione sociale (ad esempio, una lingua diversa parlata a scuola rispetto a quella a casa).
+requisiti diagnostici: >
+    Selettività costante nel parlare, per cui il bambino dimostra un'adeguata competenza linguistica in specifiche situazioni sociali, in genere a casa, ma fallisce sistematicamente nel parlare in altre situazioni, in genere a scuola.
+    La durata del disturbo è di almeno 1 mese e non si limita al primo mese di scuola.
+    Il disturbo non è dovuto a una mancanza di conoscenza o di dimestichezza con il linguaggio parlato richiesto nella situazione sociale.
+    I sintomi non sono meglio spiegabili con un altro disturbo mentale (ad esempio un disturbo neuroevolutivo come un disturbo dello spettro autistico o un disturbo evolutivo del linguaggio).
+    La selettività del linguaggio è sufficientemente grave da interferire con il rendimento scolastico o con la comunicazione sociale oppure è associata a una compromissione significativa di altre aree importanti del funzionamento.

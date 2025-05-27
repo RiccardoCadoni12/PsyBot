@@ -1,0 +1,20 @@
+disturbo: Disturbo evitante-restrittivo dell'assunzione di cibo
+codice: 6B83 
+gruppo_superiore: Disturbi dell'alimentazione
+livello: 2
+esclusioni: 
+  - Anoressia nervosa 
+  - Problemi di alimentazione del lattante 
+  - Problemi di alimentazione del neonato 
+descrizione: >
+    Il disturbo evitante-restrittivo dell'assunzione di cibo (ARFID) è caratterizzato dall'evitamento o dalla restrizione dell'assunzione di cibo che si traduce in: 
+    1) l'assunzione di una quantità o varietà di cibo insufficiente per soddisfare un adeguato fabbisogno energetico o nutrizionale che ha causato una significativa perdita di peso, carenze nutrizionali clinicamente significative, dipendenza da integratori alimentari orali o alimentazione tramite sondino, o ha comunque influito negativamente sulla salute fisica dell'individuo; 
+    o 2) una significativa compromissione del funzionamento personale, familiare, sociale, educativo, lavorativo o di altre aree importanti (ad esempio, a causa di evitamento o disagio correlato alla partecipazione a esperienze sociali che coinvolgono il cibo). 
+    Il modello di comportamento alimentare non è motivato dalla preoccupazione per il peso o la forma corporea. 
+    La restrizione dell'assunzione di cibo e i suoi effetti sul peso, su altri aspetti della salute o sul funzionamento non sono dovuti alla mancanza di cibo, non sono una manifestazione di un'altra condizione medica (ad esempio allergie alimentari, ipertiroidismo) o disturbo mentale, e non sono dovuti all'effetto di una sostanza o di un farmaco sul sistema nervoso centrale, inclusi gli effetti dell'astinenza.
+requisiti diagnostici: >
+    Evitare o limitare l'assunzione di cibo che provoca uno o entrambi i seguenti effetti:
+    L'assunzione di una quantità o varietà di cibo insufficiente a soddisfare un adeguato fabbisogno energetico o nutrizionale che ha provocato una significativa perdita di peso, carenze nutrizionali clinicamente significative, dipendenza da integratori alimentari orali o alimentazione tramite sondino, o ha comunque influito negativamente sulla salute fisica dell'individuo.
+    Compromissione significativa del funzionamento personale, familiare, sociale, educativo, lavorativo o di altre aree importanti (ad esempio, a causa di evitamento o disagio correlati alla partecipazione a esperienze sociali che coinvolgono il mangiare).
+    Il modello di comportamento alimentare non è motivato dalla preoccupazione per il peso o la forma del corpo.
+    L'assunzione limitata di cibo e la conseguente perdita di peso (o mancato aumento di peso), o altri effetti sulla salute fisica o compromissione funzionale correlata, non sono dovuti alla mancanza di cibo; non sono una manifestazione di un'altra condizione medica (ad esempio, allergie alimentari, ipertiroidismo) o disturbo mentale; e non sono dovuti agli effetti di una sostanza o di un farmaco, compresi gli effetti dell'astinenza.

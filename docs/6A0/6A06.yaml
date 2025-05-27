@@ -1,0 +1,19 @@
+disturbo: Disturbo del movimento stereotipato 
+codice: 6A06
+gruppo_superiore: Disturbi dello sviluppo neurologico
+livello: 2
+esclusioni:
+  - Disturbi del tic 
+  - Tricotillomania 
+  - Movimenti involontari anomali 
+descrizione: >
+    Il disturbo del movimento stereotipato è caratterizzato dalla presenza persistente (ad esempio, della durata di diversi mesi) di movimenti volontari, ripetitivi, stereotipati, apparentemente senza scopo (e spesso ritmici) che sorgono durante il primo periodo di sviluppo, non sono causati dagli effetti fisiologici diretti di una sostanza o di un farmaco (incluso l'astinenza) e interferiscono notevolmente con le normali attività o provocano lesioni personali autoinflitte. 
+    I movimenti stereotipati che non sono dannosi possono includere il body rocking, il head rocking, i manierismi che sbattono con le dita e lo sbattere le mani. 
+    I comportamenti autolesionisti stereotipati possono includere colpi ripetitivi della testa, schiaffi in faccia, colpi di occhi e morsi alle mani, alle labbra o ad altre parti del corpo.
+requisiti diagnostici: >
+    Presenza persistente (ad esempio, della durata di diversi mesi) di movimenti volontari, ripetitivi, stereotipati, apparentemente senza scopo e spesso ritmici, (ad esempio, dondolo del corpo, sbattere le mani, sbattere la testa, spingere gli occhi e mordere la mano) che non sono causati dagli effetti fisiologici diretti di una sostanza o di un farmaco (incluso l'astinenza).
+    I movimenti stereotipati provocano un'interferenza significativa con la capacità di impegnarsi nelle normali attività quotidiane o provocano lesioni corporee autoinflitte abbastanza gravi da essere un focus indipendente di attenzione clinica o che comporterebbero autolesionismo se non fossero prese misure di protezione.
+    L'insorgenza si verifica durante il periodo di sviluppo, in genere in tenera età.
+sottocategorie: 
+  - Disturbo del movimento stereotipato senza autolesionismo
+  - Disturbo del movimento stereotipato con autolesionismo

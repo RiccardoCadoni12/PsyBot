@@ -1,0 +1,26 @@
+disturbo: Disturbo neurologico dissociativo
+codice: 6B60 
+gruppo_superiore: Disturbi dissociativi
+livello: 2
+esclusioni: Disturbi fittizi
+descrizione: >
+    Il disturbo neurologico dissociativo è caratterizzato dalla presentazione di sintomi motori, sensoriali o cognitivi che implicano una discontinuità involontaria nella normale integrazione delle funzioni motorie, sensoriali o cognitive e non sono compatibili con una malattia riconosciuta del sistema nervoso, altri disturbi mentali o comportamentali o altre condizioni mediche. 
+    I sintomi non si manifestano esclusivamente durante un altro disturbo dissociativo e non sono dovuti agli effetti di una sostanza o di un farmaco sul sistema nervoso centrale, inclusi gli effetti da astinenza, o un disturbo del sonno-veglia.
+requisiti diagnostici: >
+    Interruzione o discontinuità involontaria nella normale integrazione delle funzioni motorie, sensoriali o cognitive, della durata di almeno diverse ore.
+    I risultati clinici non sono compatibili con una malattia riconosciuta del sistema nervoso (ad esempio un ictus) o con un'altra condizione medica (ad esempio un trauma cranico).
+    I sintomi non si manifestano esclusivamente durante episodi di disturbo di trance, disturbo di trance da possessione, disturbo dissociativo dell'identità o disturbo dissociativo dell'identità parziale.
+    I sintomi non sono dovuti agli effetti di una sostanza o di un farmaco sul sistema nervoso centrale, compresi gli effetti dell'astinenza, non si verificano esclusivamente durante stati ipnagogici o ipnopompici e non sono dovuti a un disturbo del sonno-veglia (ad esempio, disturbo del movimento ritmico correlato al sonno, paralisi ricorrente isolata del sonno).
+    I sintomi non sono meglio attribuibili ad un altro disturbo mentale (ad esempio, schizofrenia o altro disturbo psicotico primario, disturbo da stress post-traumatico).
+    I sintomi determinano una compromissione significativa del funzionamento personale, familiare, sociale, educativo, lavorativo o di altri ambiti importanti.
+sottocategorie:
+  - Disturbo neurologico dissociativo con disturbi visivi
+  - Disturbo neurologico dissociativo con disturbo uditivo
+  - Disturbo neurologico dissociativo con vertigini o capogiri
+  - Disturbo neurologico dissociativo con altri disturbi sensoriali
+  - Disturbo neurologico dissociativo con crisi non epilettiche
+  - Disturbo neurologico dissociativo con disturbo del linguaggio
+  - Disturbo neurologico dissociativo con paresi o debolezza
+  - Disturbo neurologico dissociativo con disturbo dell'andatura
+  - Disturbo neurologico dissociativo con disturbi del movimento
+  - Disturbo neurologico dissociativo con sintomi cognitivi

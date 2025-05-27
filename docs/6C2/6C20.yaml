@@ -1,0 +1,43 @@
+disturbo: Disturbo da sofferenza corporea
+codice: 6C20 
+gruppo_superiore: Disturbi del disagio corporeo o dell'esperienza corporea
+livello: 2
+esclusioni:
+  - Sindrome di Tourette 
+  - Disturbo da strappo dei capelli 
+  - Disturbi dissociativi 
+  - Strapparsi i capelli 
+  - Ipocondriasi
+  - Disturbo dismorfico del corpo 
+  - Disturbo da escoriazione 
+  - Incongruenza di genere 
+  - Disfunzioni sessuali 
+  - Disturbi da tic 
+  - Disturbo da penetrazione-dolore sessuale 
+  - Sindrome da stanchezza postvirale 
+  - Sindrome da stanchezza cronica 
+  - Encefalomielite mialgica 
+descrizione: >
+    Il disturbo da distress corporeo è caratterizzato dalla presenza di sintomi corporei che causano disagio all'individuo e da un'eccessiva attenzione rivolta a tali sintomi, che può manifestarsi con ripetuti contatti con gli operatori sanitari. 
+    Se un'altra condizione di salute causa o contribuisce ai sintomi, il livello di attenzione è chiaramente eccessivo in relazione alla sua natura e progressione. 
+    L'eccessiva attenzione non viene alleviata da un esame clinico e da indagini appropriate, né da adeguate rassicurazioni. 
+    I sintomi corporei sono persistenti, essendo presenti quasi tutti i giorni per almeno diversi mesi. 
+    In genere, il disturbo da distress corporeo comporta molteplici sintomi corporei che possono variare nel tempo. 
+    Occasionalmente è presente un singolo sintomo, solitamente dolore o affaticamento, associato alle altre caratteristiche del disturbo. 
+    I sintomi e il disagio e la preoccupazione associati hanno almeno un certo impatto sul funzionamento dell'individuo (ad esempio, tensione nelle relazioni, funzionamento scolastico o lavorativo meno efficace, abbandono di specifiche attività ricreative).
+requisiti diagnostici: >
+    La presenza di sintomi corporei che causano disagio all'individuo. 
+    In genere, si tratta di molteplici sintomi corporei che possono variare nel tempo. 
+    Occasionalmente, l'attenzione si concentra su un singolo sintomo, solitamente dolore o affaticamento.
+    Si presta eccessiva attenzione ai sintomi, che possono manifestarsi in:
+    Preoccupazione persistente per la gravità dei sintomi o per le loro conseguenze negative. 
+    Negli individui affetti da una condizione medica accertata che potrebbe causare o contribuire ai sintomi, il livello di attenzione correlato ai sintomi è chiaramente eccessivo rispetto alla natura e alla gravità della condizione medica.
+    Contatti ripetuti con operatori sanitari correlati a sintomi corporei che superano di gran lunga quanto sarebbe considerato necessario dal punto di vista medico.
+    L'eccessiva attenzione ai sintomi corporei persiste nonostante gli esami clinici e le indagini appropriate o le opportune rassicurazioni da parte degli operatori sanitari.
+    I sintomi corporei sono persistenti, vale a dire che alcuni sintomi sono presenti (anche se non necessariamente gli stessi) quasi tutti i giorni durante un periodo di almeno diversi mesi (ad esempio, 3 mesi o più).
+    I sintomi corporei e il disagio e le preoccupazioni correlati determinano un significativo deterioramento delle funzioni personali, familiari, sociali, educative, occupazionali o di altri ambiti importanti.
+    I sintomi o la sofferenza e la preoccupazione associate non sono meglio spiegabili da un altro disturbo mentale (ad esempio, schizofrenia o altro disturbo psicotico primario, un disturbo dell'umore o un disturbo d'ansia o di paura).
+sottocategorie:
+  - Disturbo da sofferenza corporea lieve
+  - Disturbo da sofferenza corporea moderata
+  - Disturbo da grave sofferenza fisica
