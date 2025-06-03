@@ -71,8 +71,8 @@ class YAMLRetriever:
                                     f"Requisiti diagnostici: {data.get('requisiti diagnostici', '')}\n"
                                     f"Sottocategorie: {data.get('sottocategorie', '')}"
                                 )
-                            elif "Questionario" in data :
-                                nome_q = data.get("Questionario", data.get("Questionario", ""))
+                            elif "Questionario" in data:
+                                nome_q = data.get("Questionario", "")
                                 self.termini_indicizzati.add(nome_q.lower())
                                 contenuto = (
                                     f"Questionario: {nome_q}\n"
@@ -136,26 +136,55 @@ class YAMLRetriever:
 
         return list(set(tokens))
 
-    def multi_concept_retrieve(self, query: str, top_k: int = 3, min_score: float = 0.8) -> List[Document]:
+    def multi_concept_retrieve(self, query: str, top_k: int = 6, min_score: float = 0.8) -> List[Document]:
         print(f"[DEBUG] Recupero per query: {query}")
         query_lower = query.lower()
+        matched_termini = []
 
-        # Match diretto tra i termini indicizzati
         for termine in self.termini_indicizzati:
             if termine.lower() in query_lower:
-                print(f"[MATCH DIRETTO] Trovato termine '{termine}' nella query.")
-                # Recupera direttamente i documenti con quel termine
-                docs = self.vectorstore.similarity_search(termine, k=3)
-                return docs
+                matched_termini.append(termine)
 
-        # Altrimenti vai con ricerca semantica standard
+        all_docs = []
+
+        if matched_termini:
+            print(f"[MATCH DIRETTO] Trovati termini: {matched_termini}")
+            for termine in matched_termini:
+                docs = self.vectorstore.similarity_search(termine, k=top_k)
+                all_docs.extend(docs)
+        else:
+            print("[DEBUG] Nessun match diretto, avvio ricerca semantica...")
+            results = self.vectorstore.similarity_search_with_score(query, k=top_k)
+            threshold = 1 - min_score
+            filtered = [doc for doc, score in results if score <= threshold]
+            all_docs.extend(filtered)
+
+        seen = set()
+        unique_docs = []
+        for doc in all_docs:
+            if doc.page_content not in seen:
+                unique_docs.append(doc)
+                seen.add(doc.page_content)
+
+        return unique_docs
+
+    def therapeutic_retrieve(self, query: str, top_k: int = 6, max_score: float = 0.8) -> List[Document]:
+        print(f"[DEBUG] Recupero terapeutico per query: {query}")
         results = self.vectorstore.similarity_search_with_score(query, k=top_k)
-        threshold = 1 - min_score
-        filtered = [doc for doc, score in results if score <= threshold]
+        filtered = []
+        for doc, score in results:
+            doc.metadata["score"] = score
+            if score >= max_score:
+                filtered.append(doc)
 
-        if not filtered:
-            print("[DEBUG] Nessun documento supera la soglia di similarità.")
-        return filtered
+        seen = set()
+        unique_docs = []
+        for doc in filtered:
+            if doc.page_content not in seen:
+                unique_docs.append(doc)
+                seen.add(doc.page_content)
+
+        return unique_docs
 
     def reset_index(self, yaml_path="docs/"):
         print("[LOG] Rigenerazione completa dell'indice...")
