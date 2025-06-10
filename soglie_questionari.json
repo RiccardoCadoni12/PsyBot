@@ -1,0 +1,149 @@
+{
+  "questionari": [
+    {
+      "nome": "PSQI",
+      "alias": [],
+      "soglie": [
+        {
+          "min": 0,
+          "max": 5,
+          "disturbo": null
+        },
+        {
+          "min": 6,
+          "max": 10,
+          "disturbo": "Insomnia disorder"
+        },
+        {
+          "min": 11,
+          "max": 21,
+          "disturbo": "Insomnia disorder"
+        }
+      ]
+    },
+    {
+      "nome": "MEQ",
+      "alias": [],
+      "soglie": [
+        {
+          "min": 16,
+          "max": 30,
+          "disturbo": "Delayed sleep-wake phase disorder"
+        },
+        {
+          "min": 31,
+          "max": 41,
+          "disturbo": null
+        },
+        {
+          "min": 42,
+          "max": 58,
+          "disturbo": null
+        },
+        {
+          "min": 59,
+          "max": 69,
+          "disturbo": null
+        },
+        {
+          "min": 70,
+          "max": 86,
+          "disturbo": "Advanced sleep-wake phase disorder"
+        }
+      ]
+    },
+    {
+      "nome": "STAI-Y",
+      "alias": [],
+      "soglie": [
+        {
+          "min": 0,
+          "max": 39,
+          "disturbo": null
+        },
+        {
+          "min": 40,
+          "max": 60,
+          "disturbo": "Generalized anxiety disorder"
+        },
+        {
+          "min": 61,
+          "max": 80,
+          "disturbo": "Generalized anxiety disorder"
+        }
+      ]
+    },
+    {
+      "nome": "PA",
+      "macro_questionario": "PANAS",
+      "alias": ["positive affect"],
+      "soglie": [
+        {
+          "min": 0,
+          "max": 19,
+          "disturbo": "Depressive episode"
+        }
+      ]
+    },
+    {
+      "nome": "NA",
+      "macro_questionario": "PANAS",
+      "alias": ["negative affect"],
+      "soglie": [
+        {
+          "min": 30,
+          "max": 50,
+          "disturbo": "Depressive episode"
+        }
+      ]
+    },
+    {
+      "nome": "BIS",
+      "macro_questionario": "BIS/BAS",
+      "alias": [],
+      "soglie": [
+        {
+          "min": 25,
+          "max": 30,
+          "disturbo": "Generalized anxiety disorder"
+        }
+      ]
+    },
+    {
+      "nome": "BAS Drive",
+      "macro_questionario": "BIS/BAS",
+      "alias": ["BASDRIVE"],
+      "soglie": [
+        {
+          "min": 0,
+          "max": 10,
+          "disturbo": "Depressive episode"
+        }
+      ]
+    },
+    {
+      "nome": "Fun Seeking",
+      "macro_questionario": "BIS/BAS",
+      "alias": ["BASFUN", "FUN SEEKING"],
+      "soglie": [
+        {
+          "min": 0,
+          "max": 10,
+          "disturbo": "Impulse control disorder, unspecified"
+        }
+      ]
+    },
+    {
+      "nome": "Reward Resp.",
+      "macro_questionario": "BIS/BAS",
+      "alias": ["REWARD RESPONSE", "REWARD RESP."],
+      "soglie": [
+        {
+          "min": 0,
+          "max": 10,
+          "disturbo": "Disorder due to addictive behaviours, unspecified"
+        }
+      ]
+    }
+  ]
+}

@@ -3,6 +3,7 @@ import re
 import json
 import time
 import yaml
+import unicodedata
 from typing import List
 from langchain_community.vectorstores import Chroma
 from langchain_huggingface import HuggingFaceEmbeddings
@@ -18,6 +19,11 @@ def timed(func):
         print(f"[TIMER] {func.__name__} executed in {end - start:.4f} seconds")
         return result
     return wrapper
+
+
+def normalize_text(text: str) -> str:
+    text = unicodedata.normalize('NFKD', text.lower())
+    return ''.join([c for c in text if not unicodedata.combining(c)])
 
 
 class YAMLRetriever:
@@ -50,47 +56,38 @@ class YAMLRetriever:
 
         for root, _, files in os.walk(folder_path):
             for filename in files:
-                if filename.endswith((".yaml", ".yml")):
+                if filename.endswith(('.yaml', '.yml')):
                     full_path = os.path.join(root, filename)
+                    print(f"[DEBUG] Lettura file: {full_path}")
                     try:
-                        with open(full_path, "r", encoding="utf-8") as file:
+                        with open(full_path, 'r', encoding='utf-8') as file:
                             data = yaml.safe_load(file)
                             if not data:
                                 continue
 
-                            if "disturbo" in data:
-                                titolo = data["disturbo"]
-                                self.termini_indicizzati.add(titolo.lower())
-                                contenuto = (
-                                    f"Disturbo: {data.get('disturbo', '')}\n"
-                                    f"Gruppo Superiore: {data.get('gruppo_superiore', '')}\n"
-                                    f"Livello: {data.get('livello', '')}\n"
-                                    f"Inclusioni: {data.get('inclusioni', '')}\n"
-                                    f"Esclusioni: {data.get('esclusioni', '')}\n"
-                                    f"Descrizione: {data.get('descrizione', '')}\n"
-                                    f"Requisiti diagnostici: {data.get('requisiti diagnostici', '')}\n"
-                                    f"Sottocategorie: {data.get('sottocategorie', '')}"
-                                )
-                            elif "Questionario" in data:
-                                nome_q = data.get("Questionario", "")
-                                self.termini_indicizzati.add(nome_q.lower())
+                            if 'Questionario' in data:
+                                nome_q = data.get('Questionario', '').strip()
+                                if not nome_q:
+                                    continue
+
+                                self.termini_indicizzati.add(normalize_text(nome_q))
+
                                 contenuto = (
                                     f"Questionario: {nome_q}\n"
                                     f"Descrizione: {data.get('descrizione', '')}\n"
                                     f"Cosa misura: {data.get('cosa_misura', '')}\n"
-                                    f"Fattori misurati: {data.get('fattori_misurati', '')}\n"
-                                    f"Range punteggio: {data.get('range_punteggio', '')}\n"
-                                    f"Significato punteggi: {data.get('significato_punteggi', '')}"
+                                    f"Valore minimo: {data.get('valore_minimo', '')}\n"
+                                    f"Valore massimo: {data.get('valore_massimo', '')}\n"
+                                    f"Valori di riferimento: {data.get('valori_di_riferimento', '')}"
                                 )
-                            else:
-                                print(f"[SKIP] Nessun campo utile in {filename}")
-                                continue
 
-                            chunks = splitter.split_text(contenuto)
-                            for chunk in chunks:
-                                self.docs.append(Document(page_content=chunk, metadata={"source": filename}))
+                                chunks = splitter.split_text(contenuto)
+                                for idx, chunk in enumerate(chunks):
+                                    doc = Document(page_content=chunk, metadata={"source": filename, "chunk_index": idx})
+                                    self.docs.append(doc)
+                                print(f"[DEBUG] Aggiunti {len(chunks)} chunk da {filename}")
+                                file_count += 1
 
-                            file_count += 1
                     except Exception as e:
                         print(f"[ERRORE] Impossibile caricare {filename}: {e}")
 
@@ -119,30 +116,28 @@ class YAMLRetriever:
         return Chroma.from_documents(split_docs, embedding=self.embedding_function, persist_directory=self.persist_path)
 
     def extract_tokens(self, query: str) -> List[str]:
-        query_lower = query.lower()
+        query_norm = normalize_text(query)
         tokens = []
-        parole_query = set(re.findall(r'\b\w{4,}\b', query_lower))
+        parole_query = set(re.findall(r'\b\w{4,}\b', query_norm))
 
         for termine in self.termini_indicizzati:
-            termine_norm = termine.lower().strip()
-
-            if termine_norm in query_lower:
+            if termine in query_norm:
                 tokens.append(termine)
                 continue
 
-            parole_termine = set(re.findall(r'\b\w{4,}\b', termine_norm))
+            parole_termine = set(re.findall(r'\b\w{4,}\b', termine))
             if parole_query & parole_termine:
                 tokens.append(termine)
 
         return list(set(tokens))
 
-    def multi_concept_retrieve(self, query: str, top_k: int = 6, min_score: float = 0.8) -> List[Document]:
+    def multi_concept_retrieve(self, query: str, top_k: int = 6, min_score: float = 0.75) -> List[Document]:
         print(f"[DEBUG] Recupero per query: {query}")
-        query_lower = query.lower()
+        query_norm = normalize_text(query)
         matched_termini = []
 
         for termine in self.termini_indicizzati:
-            if termine.lower() in query_lower:
+            if termine in query_norm:
                 matched_termini.append(termine)
 
         all_docs = []
@@ -151,13 +146,16 @@ class YAMLRetriever:
             print(f"[MATCH DIRETTO] Trovati termini: {matched_termini}")
             for termine in matched_termini:
                 docs = self.vectorstore.similarity_search(termine, k=top_k)
+                print(f"[DEBUG] Term '{termine}' -> {len(docs)} documenti trovati")
                 all_docs.extend(docs)
         else:
             print("[DEBUG] Nessun match diretto, avvio ricerca semantica...")
             results = self.vectorstore.similarity_search_with_score(query, k=top_k)
             threshold = 1 - min_score
-            filtered = [doc for doc, score in results if score <= threshold]
-            all_docs.extend(filtered)
+            for doc, score in results:
+                print(f"[DEBUG] Match: {doc.metadata.get('source', 'unknown')} | Score: {score:.4f}")
+                if score <= threshold:
+                    all_docs.append(doc)
 
         seen = set()
         unique_docs = []
@@ -166,9 +164,10 @@ class YAMLRetriever:
                 unique_docs.append(doc)
                 seen.add(doc.page_content)
 
+        print(f"[DEBUG] Restituiti {len(unique_docs)} documenti unici")
         return unique_docs
 
-    def therapeutic_retrieve(self, query: str, top_k: int = 6, max_score: float = 0.8) -> List[Document]:
+    def therapeutic_retrieve(self, query: str, top_k: int = 10, max_score: float = 0.8) -> List[Document]:
         print(f"[DEBUG] Recupero terapeutico per query: {query}")
         results = self.vectorstore.similarity_search_with_score(query, k=top_k)
         filtered = []
