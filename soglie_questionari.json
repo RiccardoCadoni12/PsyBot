@@ -5,19 +5,22 @@
       "alias": [],
       "soglie": [
         {
-          "min": 0,
-          "max": 5,
-          "disturbo": null
-        },
-        {
           "min": 6,
           "max": 10,
-          "disturbo": "Insomnia disorder"
+          "disturbi": [
+            "Insomnia disorder",
+            "Hypersomnolence disorder",
+            "Other specified sleep-wake disorders"
+          ]
         },
         {
           "min": 11,
           "max": 21,
-          "disturbo": "Insomnia disorder"
+          "disturbi": [
+            "Insomnia disorder",
+            "Circadian rhythm sleep-wake disorders",
+            "Other specified sleep-wake disorders"
+          ]
         }
       ]
     },
@@ -28,27 +31,18 @@
         {
           "min": 16,
           "max": 30,
-          "disturbo": "Delayed sleep-wake phase disorder"
-        },
-        {
-          "min": 31,
-          "max": 41,
-          "disturbo": null
-        },
-        {
-          "min": 42,
-          "max": 58,
-          "disturbo": null
-        },
-        {
-          "min": 59,
-          "max": 69,
-          "disturbo": null
+          "disturbi": [
+            "Delayed sleep-wake phase disorder",
+            "Irregular sleep-wake rhythm disorder"
+          ]
         },
         {
           "min": 70,
           "max": 86,
-          "disturbo": "Advanced sleep-wake phase disorder"
+          "disturbi": [
+            "Advanced sleep-wake phase disorder",
+            "Non-24-hour sleep-wake rhythm disorder"
+          ]
         }
       ]
     },
@@ -57,19 +51,22 @@
       "alias": [],
       "soglie": [
         {
-          "min": 0,
-          "max": 39,
-          "disturbo": null
-        },
-        {
           "min": 40,
           "max": 60,
-          "disturbo": "Generalized anxiety disorder"
+          "disturbi": [
+            "Generalized anxiety disorder",
+            "Panic disorder",
+            "Other specified anxiety or fear-related disorders"
+          ]
         },
         {
           "min": 61,
           "max": 80,
-          "disturbo": "Generalized anxiety disorder"
+          "disturbi": [
+            "Generalized anxiety disorder",
+            "Agoraphobia",
+            "Other specified anxiety or fear-related disorders"
+          ]
         }
       ]
     },
@@ -79,9 +76,12 @@
       "alias": ["positive affect"],
       "soglie": [
         {
-          "min": 0,
-          "max": 19,
-          "disturbo": "Depressive episode"
+          "min": 10,
+          "max": 25,
+          "disturbi": [
+            "Depressive episode",
+            "Recurrent depressive disorder"
+          ]
         }
       ]
     },
@@ -91,9 +91,13 @@
       "alias": ["negative affect"],
       "soglie": [
         {
-          "min": 30,
+          "min": 25,
           "max": 50,
-          "disturbo": "Depressive episode"
+          "disturbi": [
+            "Generalized anxiety disorder",
+            "Depressive episode",
+            "Other specified stress disorders"
+          ]
         }
       ]
     },
@@ -104,44 +108,59 @@
       "soglie": [
         {
           "min": 25,
-          "max": 30,
-          "disturbo": "Generalized anxiety disorder"
+          "max": 28,
+          "disturbi": [
+            "Generalized anxiety disorder",
+            "Impulse control disorder, unspecified",
+            "Other specified impulse control disorders"
+          ]
         }
       ]
     },
     {
       "nome": "BAS Drive",
       "macro_questionario": "BIS/BAS",
-      "alias": ["BASDRIVE"],
+      "alias": ["BASDRIVE", "DRIVE"],
       "soglie": [
         {
-          "min": 0,
-          "max": 10,
-          "disturbo": "Depressive episode"
+          "min": 4,
+          "max": 16,
+          "disturbi": [
+            "Depressive episode",
+            "Recurrent depressive disorder"
+          ]
         }
       ]
     },
     {
       "nome": "Fun Seeking",
       "macro_questionario": "BIS/BAS",
-      "alias": ["BASFUN", "FUN SEEKING"],
+      "alias": ["BASFUN", "FUN SEEKING", "SEEKING"],
       "soglie": [
         {
-          "min": 0,
-          "max": 10,
-          "disturbo": "Impulse control disorder, unspecified"
+          "min": 4,
+          "max": 16,
+          "disturbi": [
+            "Impulse control disorder, unspecified",
+            "Other specified impulse control disorders",
+            "Intermittent explosive disorder"
+          ]
         }
       ]
     },
     {
       "nome": "Reward Resp.",
       "macro_questionario": "BIS/BAS",
-      "alias": ["REWARD RESPONSE", "REWARD RESP."],
+      "alias": ["REWARD RESPONSE", "REWARD RESP.", "Reward Resp."],
       "soglie": [
         {
-          "min": 0,
-          "max": 10,
-          "disturbo": "Disorder due to addictive behaviours, unspecified"
+          "min": 5,
+          "max": 20,
+          "disturbi": [
+            "Other specified disorders due to addictive behaviours",
+            "Disorders due to addictive behaviours, unspecified",
+            "Gambling disorder"
+          ]
         }
       ]
     }
