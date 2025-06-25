@@ -9,7 +9,7 @@ from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.docstore.document import Document
-from langchain.embeddings import HuggingFaceEmbeddings  # (duplicato, può essere rimosso)
+
 
 # Decoratore per misurare il tempo di esecuzione di una funzione
 def timed(func):

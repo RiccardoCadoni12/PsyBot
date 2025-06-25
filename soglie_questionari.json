@@ -149,9 +149,9 @@
       ]
     },
     {
-      "nome": "Reward Resp.",
+      "nome": "Reward Responsiveness",
       "macro_questionario": "BIS/BAS",
-      "alias": ["REWARD RESPONSE", "REWARD RESP.", "Reward Resp."],
+      "alias": ["REWARD RESPONSE", "REWARD RESP.", "Reward Resp","Reward response","RESPONSIVENESS"],
       "soglie": [
         {
           "min": 5,

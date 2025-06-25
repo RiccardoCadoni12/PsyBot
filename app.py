@@ -6,9 +6,8 @@ from rag_retriever import YAMLRetriever  # Classe personalizzata per il recupero
 import re
 import json
 import os
-from deep_translator import GoogleTranslator  # Per la traduzione automatica
-from langdetect import detect  # Per rilevare la lingua di input
-from collections import Counter
+from transformers import MarianMTModel, MarianTokenizer
+
 
 # === Credenziali per l'accesso all'API ICD-11 ===
 client_id = "01e59d5d-f8fa-483f-bcf3-85e2d5a6718f_f55032df-785b-46d1-ad06-2c92eb5f22a7"
@@ -32,22 +31,13 @@ def get_icd_token(client_id, client_secret):
 
 # === Funzione per cercare un termine nell'ICD-11 ===
 def icd_search(term, token=None, min_score=0.8):
-    try:
-        # Traduzione del termine in inglese per la ricerca ICD
-        if isinstance(term, dict):
-            term = term.get("disturbo", str(term))
-        translated_term = GoogleTranslator(source='auto', target='en').translate(term)
-        print(f"[ICD-11] Tradotto '{term}' → '{translated_term}'")
-    except Exception as e:
-        print(f"[TRADUZIONE ERRORE] Impossibile tradurre '{term}': {e}")
-        translated_term = term
 
     if token is None:
         token = get_icd_token(client_id, client_secret)
     if token is None:
         return []
 
-    search_url = f"https://id.who.int/icd/release/11/2022-02/mms/search?q={translated_term}"
+    search_url = f"https://id.who.int/icd/release/11/2022-02/mms/search?q={term}"
     headers = {
         'Authorization': f'Bearer {token}',
         'API-Version': 'v2',
@@ -144,16 +134,19 @@ def truncate_prompt(prompt: str, max_tokens: int = MAX_PROMPT_TOKENS) -> str:
         return " ".join(words[-max_tokens:])
     return prompt
 
-# === Traduce in italiano se il testo non è già in italiano ===
-def translate_to_italian_if_needed(text: str) -> str:
+def translate_to_italian(text):
     try:
-        lang = detect(text)
-        if lang != 'it':
-            print(f"[LINGUA] Rilevata lingua: {lang}, traducendo in italiano...")
-            return GoogleTranslator(source='auto', target='it').translate(text)
+        model_name = 'Helsinki-NLP/opus-mt-en-it'
+        tokenizer = MarianTokenizer.from_pretrained(model_name)
+        model = MarianMTModel.from_pretrained(model_name)
+        
+        translated = model.generate(**tokenizer(text, return_tensors="pt", padding=True))
+        output = tokenizer.decode(translated[0], skip_special_tokens=True)
+        return output
     except Exception as e:
-        print(f"[ERRORE TRADUZIONE] {e}")
-    return text
+        print(f"[TRANSLATION ERROR] {e}")
+        return "[ERRORE NELLA TRADUZIONE]"
+
 
 # === Chiamata al modello Mistral locale tramite API ===
 def ask_mistral(prompt: str) -> str:
@@ -172,7 +165,6 @@ def ask_mistral(prompt: str) -> str:
         data = response.json()
         if isinstance(data, dict) and "choices" in data and data["choices"]:
             reply = data["choices"][0]["message"]["content"]
-            print(f"[RISPOSTA IN ITALIANO] {GoogleTranslator(source='auto', target='it').translate(reply)}")
             return reply
         elif "error" in data:
             return f"Model error: {data['error']}"
@@ -315,6 +307,8 @@ def generate_bot_reply(history):
 
     # Invio al modello e aggiornamento della cronologia
     reply = ask_mistral(prompt)
+    print("\n[🔁 TRADUZIONE ITALIANA]")
+    print(translate_to_italian(reply))
     history.append({"role": "assistant", "content": reply})
     return history, history
 
