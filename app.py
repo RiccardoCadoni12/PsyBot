@@ -134,18 +134,27 @@ def truncate_prompt(prompt: str, max_tokens: int = MAX_PROMPT_TOKENS) -> str:
         return " ".join(words[-max_tokens:])
     return prompt
 
-def translate_to_italian(text):
-    try:
-        model_name = 'Helsinki-NLP/opus-mt-en-it'
-        tokenizer = MarianTokenizer.from_pretrained(model_name)
-        model = MarianMTModel.from_pretrained(model_name)
-        
-        translated = model.generate(**tokenizer(text, return_tensors="pt", padding=True))
-        output = tokenizer.decode(translated[0], skip_special_tokens=True)
-        return output
-    except Exception as e:
-        print(f"[TRANSLATION ERROR] {e}")
-        return "[ERRORE NELLA TRADUZIONE]"
+def translate_sentence_by_sentence(text):
+    model_name = 'Helsinki-NLP/opus-mt-en-it'
+    tokenizer = MarianTokenizer.from_pretrained(model_name)
+    model = MarianMTModel.from_pretrained(model_name)
+    
+    # Divido il testo in frasi con regex: considera ., !, ? come fine frase
+    sentences = re.split(r'(?<=[.!?])\s+', text.strip())
+    
+    translated_sentences = []
+    
+    for sentence in sentences:
+        if not sentence.strip():
+            continue
+        inputs = tokenizer(sentence, return_tensors="pt", padding=True, truncation=True, max_length=512)
+        translated = model.generate(**inputs)
+        translation = tokenizer.decode(translated[0], skip_special_tokens=True)
+        translated_sentences.append(translation)
+    
+    # Unisco tutte le frasi tradotte con uno spazio
+    full_translation = " ".join(translated_sentences)
+    return full_translation
 
 
 # === Chiamata al modello Mistral locale tramite API ===
@@ -304,11 +313,11 @@ def generate_bot_reply(history):
             f"{icd_txt}\n\n"
             "Provide a clear and informative response:"
         )
-
+    
     # Invio al modello e aggiornamento della cronologia
     reply = ask_mistral(prompt)
     print("\n[🔁 TRADUZIONE ITALIANA]")
-    print(translate_to_italian(reply))
+    print(translate_sentence_by_sentence(reply))
     history.append({"role": "assistant", "content": reply})
     return history, history
 
