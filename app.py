@@ -7,11 +7,22 @@ import re
 import json
 import os
 from transformers import MarianMTModel, MarianTokenizer
+from collections import Counter
 
 
 # === Credenziali per l'accesso all'API ICD-11 ===
 client_id = "01e59d5d-f8fa-483f-bcf3-85e2d5a6718f_f55032df-785b-46d1-ad06-2c92eb5f22a7"
 client_secret = "MFDGMiIDCYbpRgXpvVUj1w8TUyvMePn3FUbIsfxZsSE="
+
+# === Decoratore per misurare il tempo di esecuzione di una funzione ===
+def timed(func):
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        result = func(*args, **kwargs)
+        end = time.time()
+        print(f"[TIMER] {func.__name__} executed in {end - start:.4f} seconds")
+        return result
+    return wrapper
 
 # === Funzione per ottenere un token ICD-11 ===
 def get_icd_token(client_id, client_secret):
@@ -30,6 +41,7 @@ def get_icd_token(client_id, client_secret):
         return None
 
 # === Funzione per cercare un termine nell'ICD-11 ===
+@timed
 def icd_search(term, token=None, min_score=0.8):
 
     if token is None:
@@ -59,15 +71,7 @@ def log_icd_result(label, risultato):
     titolo = risultato.get("title", "Titolo non disponibile")
     print(f"[ICD DEBUG] {label}: {titolo}")
 
-# === Decoratore per misurare il tempo di esecuzione di una funzione ===
-def timed(func):
-    def wrapper(*args, **kwargs):
-        start = time.time()
-        result = func(*args, **kwargs)
-        end = time.time()
-        print(f"[TIMER] {func.__name__} executed in {end - start:.4f} seconds")
-        return result
-    return wrapper
+
 
 # === Caricamento parole chiave terapeutiche da file JSON ===
 TERAPIA_JSON_PATH = os.path.join(os.getcwd(), "parole_terapia.json")
@@ -133,7 +137,7 @@ def truncate_prompt(prompt: str, max_tokens: int = MAX_PROMPT_TOKENS) -> str:
         print("[DEBUG] Prompt troppo lungo, taglio in corso...")
         return " ".join(words[-max_tokens:])
     return prompt
-
+@timed
 def translate_sentence_by_sentence(text):
     model_name = 'Helsinki-NLP/opus-mt-en-it'
     tokenizer = MarianTokenizer.from_pretrained(model_name)
@@ -208,6 +212,25 @@ def pulisci_query(text):
         text = text.replace(phrase, "")
     return text.strip(" ?:\n\r").strip()
 
+def get_top_3_disturbi(disturbi_rilevati):
+    """
+    Restituisce i 3 disturbi più frequentemente rilevati tra tutti quelli associati ai test.
+    """
+    counter = Counter()
+    for d in disturbi_rilevati:
+        counter[d['disturbo']] += 1
+
+    top3 = counter.most_common(3)
+
+    # Restituisce in formato coerente
+    top3_disturbi = []
+    for disturbo, count in top3:
+        for d in disturbi_rilevati:
+            if d['disturbo'] == disturbo:
+                top3_disturbi.append(d)
+                break  # Prendi solo un esempio per ciascun disturbo
+    return top3_disturbi
+
 # === Genera la risposta del bot in base al contesto ===
 @timed
 def generate_bot_reply(history):
@@ -219,6 +242,7 @@ def generate_bot_reply(history):
 
     # Rileva il contesto: questionari, terapia, o generico
     has_score_keywords = any(term in lowered for term in ["score", "scores", "obtained", ":","questionnaire","questionnaires"])
+    has_new_terms = any(term in lowered for term in ["most likely", "three", "output","following"])
     has_therapy_speaker = re.search(r'\b(patient|counselor)\s*[:]', lowered)
     has_therapy_keywords = any(p in lowered for p in parole_terapia)
     is_therapeutic_context = bool(has_therapy_speaker or (has_therapy_keywords and len(lowered) > 500))
@@ -249,7 +273,42 @@ def generate_bot_reply(history):
             f"{user_input}\n\n"
             "Provide a concise clinical assessment:"
         )
+    elif has_new_terms:
+        punteggi = estrai_punteggi(user_input)
+        disturbi_sospetti = mappa_punteggi_a_disturbi(punteggi)
 
+        top3_disturbi = get_top_3_disturbi(disturbi_sospetti)
+        for disturbo in top3_disturbi:
+            nome_disturbo = disturbo.get("disturbo", "")
+            risultati = icd_search(nome_disturbo)
+            if risultati:
+                key = f"{disturbo.get('test')} - {nome_disturbo}"
+                icd_info[key] = risultati[0]
+                titolo = risultati[0].get("title", "Title unavailable")
+                codice = risultati[0].get("code", risultati[0].get("theCode", "Code unavailable"))
+                icd_docs.append(f"{titolo} (Code: {codice})")
+                log_icd_result(key, risultati[0])
+
+        rag_txt = "\n".join([doc.page_content for doc in rag_docs])
+        icd_txt = "\n".join(icd_docs)
+        print("[CONTEXT] TOP 3 DISORDERS – ranked clinical suspicion based on scores")
+        prompt = (
+            "You are a highly specialized clinical assistant that evaluates psychometric questionnaire scores.\n"
+            "Always respond in professional English.\n"
+            "Do NOT interpret or explain the test scores or numerical values in any way.\n"
+            "Based on the test scores and retrieved clinical and diagnostic documents, identify the three most likely psychological disorders to consider clinically.\n"
+            "Avoid general speculation not supported by the retrieved content.\n"
+            "Do NOT list disorders without giving full clinical justification.\n"
+            "Only include disorders that are explicitly referenced in the documents.\n"
+            "For each suspected disorder, provide:\n"
+            "- [Name of the disorder]\n"
+            "- [Brief clinical description: course, functional impact, typical presentation]\n"
+            "- [Common symptoms]\n"
+            "Patient test data:\n{user_input}\n\n"
+            "Local clinical documents:\n{rag_txt}\n\n"
+            "ICD-11 references:\n{icd_txt}\n\n"
+            "Answer:"
+        )
     # === Analisi punteggi test ===
     elif has_score_keywords:
         punteggi = estrai_punteggi(user_input)
@@ -281,6 +340,9 @@ def generate_bot_reply(history):
             f"ICD-11 references:\n{icd_txt}\n\n"
             "Detailed diagnostic analysis:"
         )
+    
+   
+       
 
     # === Contesto generale ===
     else:
@@ -322,7 +384,13 @@ def generate_bot_reply(history):
     return history, history
 
 # === Funzione per resettare la chat ===
+context_data = {}
+
 def reset_chat():
+    global retriever
+    retriever = YAMLRetriever()  # ricrea il retriever da zero
+    global context_data
+    context_data.clear()  # resetta contesto aggiuntivo, se presente
     return [{"role": "assistant", "content": "✅ Chat resettata. Puoi iniziare una nuova conversazione."}], []
 
 # === Interfaccia Gradio ===

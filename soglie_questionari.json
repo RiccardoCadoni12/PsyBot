@@ -5,21 +5,29 @@
       "alias": [],
       "soglie": [
         {
+          "min": 0,
+          "max": 5,
+          "disturbi": []
+        },
+        {
           "min": 6,
           "max": 10,
           "disturbi": [
-            "Insomnia disorder",
-            "Hypersomnolence disorder",
-            "Other specified sleep-wake disorders"
+            "Generalized anxiety disorder",
+            "Mild depressive episode",
+            "Obsessive–compulsive disorder",
+            "Social anxiety disorder"
           ]
         },
         {
           "min": 11,
           "max": 21,
           "disturbi": [
-            "Insomnia disorder",
-            "Circadian rhythm sleep-wake disorders",
-            "Other specified sleep-wake disorders"
+            "Bipolar disorder type I",
+            "Post-traumatic stress disorder",
+            "Bipolar disorder type II",
+            "Schizophrenia",
+            "Schizoaffective disorder"
           ]
         }
       ]
@@ -32,16 +40,31 @@
           "min": 16,
           "max": 30,
           "disturbi": [
-            "Delayed sleep-wake phase disorder",
-            "Irregular sleep-wake rhythm disorder"
+            "Mild depressive episode",
+            "Bipolar disorder type I",
+            "Recurrent depressive disorder",
+            "Attention deficit hyperactivity disorder, inattentive presentation",
+            "Dysthymic disorder"
           ]
         },
         {
-          "min": 70,
+          "min": 31,
+          "max": 60,
+          "disturbi": [
+            "Generalized anxiety disorder",
+            "Panic disorder",
+            "Obsessive–compulsive disorder",
+            "Autism spectrum disorder",
+            "Body dysmorphic disorder",
+            "Social anxiety disorder"
+          ]
+        },
+        {
+          "min": 61,
           "max": 86,
           "disturbi": [
-            "Advanced sleep-wake phase disorder",
-            "Non-24-hour sleep-wake rhythm disorder"
+            "Bipolar disorder type I",
+            "Bipolar disorder type II"
           ]
         }
       ]
@@ -51,21 +74,31 @@
       "alias": [],
       "soglie": [
         {
+          "min": 20,
+          "max": 39,
+          "disturbi": [
+            "Generalized anxiety disorder",
+            "Attention deficit hyperactivity disorder, inattentive presentation"
+          ]
+        },
+        {
           "min": 40,
           "max": 60,
           "disturbi": [
             "Generalized anxiety disorder",
+            "Bipolar disorder type I",
             "Panic disorder",
-            "Other specified anxiety or fear-related disorders"
+            "Social anxiety disorder",
+            "Autism spectrum disorder"
           ]
         },
         {
           "min": 61,
           "max": 80,
           "disturbi": [
-            "Generalized anxiety disorder",
-            "Agoraphobia",
-            "Other specified anxiety or fear-related disorders"
+            "Obsessive–compulsive disorder",
+            "Post-traumatic stress disorder",
+            "Borderline pattern personality disorder"
           ]
         }
       ]
@@ -76,11 +109,23 @@
       "alias": ["positive affect"],
       "soglie": [
         {
-          "min": 10,
+          "min": 8,
           "max": 25,
           "disturbi": [
-            "Depressive episode",
-            "Recurrent depressive disorder"
+            "Bipolar disorder type I",
+            "Mild depressive episode",
+            "Recurrent depressive disorder",
+            "Autism spectrum disorder",
+            "Post-traumatic stress disorder",
+            "Generalized anxiety disorder"
+          ]
+        },
+        {
+          "min": 26,
+          "max": 50,
+          "disturbi": [
+            "Bipolar disorder type I",
+            "Attention deficit hyperactivity disorder, inattentive presentation"
           ]
         }
       ]
@@ -91,12 +136,23 @@
       "alias": ["negative affect"],
       "soglie": [
         {
+          "min": 10,
+          "max": 24,
+          "disturbi": [
+            "Attention deficit hyperactivity disorder",
+            "Generalized anxiety disorder"
+          ]
+        },
+        {
           "min": 25,
           "max": 50,
           "disturbi": [
-            "Generalized anxiety disorder",
-            "Depressive episode",
-            "Other specified stress disorders"
+            "Bipolar disorder type I",
+            "Mild depressive episode",
+            "Recurrent depressive disorder",
+            "Borderline pattern personality disorder",
+            "Post-traumatic stress disorder",
+            "Generalized anxiety disorder"
           ]
         }
       ]
@@ -107,12 +163,23 @@
       "alias": [],
       "soglie": [
         {
-          "min": 25,
-          "max": 28,
+          "min": 8,
+          "max": 19,
           "disturbi": [
+            "Attention deficit hyperactivity disorder",
+            "Conduct disorder"
+          ]
+        },
+        {
+          "min": 20,
+          "max": 30,
+          "disturbi": [
+            "Bipolar disorder type I",
             "Generalized anxiety disorder",
-            "Impulse control disorder, unspecified",
-            "Other specified impulse control disorders"
+            "Obsessive–compulsive disorder",
+            "Panic disorder",
+            "Borderline pattern personality disorder",
+            "Post-traumatic stress disorder"
           ]
         }
       ]
@@ -126,8 +193,27 @@
           "min": 4,
           "max": 16,
           "disturbi": [
-            "Depressive episode",
-            "Recurrent depressive disorder"
+            "Bipolar disorder type I",
+            "Mild depressive episode",
+            "Autism spectrum disorder",
+            "Post-traumatic stress disorder"
+          ]
+        },
+        {
+          "min": 17,
+          "max": 20,
+          "disturbi": [
+            "Generalized anxiety disorder",
+            "Obsessive–compulsive disorder"
+          ]
+        },
+        {
+          "min": 21,
+          "max": 30,
+          "disturbi": [
+            "Bipolar disorder type I",
+            "Attention deficit hyperactivity disorder",
+            "Pathological gambling"
           ]
         }
       ]
@@ -141,9 +227,26 @@
           "min": 4,
           "max": 16,
           "disturbi": [
-            "Impulse control disorder, unspecified",
-            "Other specified impulse control disorders",
-            "Intermittent explosive disorder"
+            "Bipolar disorder type I",
+            "Recurrent depressive disorder",
+            "Post-traumatic stress disorder"
+          ]
+        },
+        {
+          "min": 17,
+          "max": 20,
+          "disturbi": [
+            "Obsessive–compulsive disorder"
+          ]
+        },
+        {
+          "min": 21,
+          "max": 28,
+          "disturbi": [
+            "Bipolar disorder type I",
+            "Attention deficit hyperactivity disorder",
+            "Conduct disorder",
+            "Pathological gambling"
           ]
         }
       ]
@@ -151,15 +254,25 @@
     {
       "nome": "Reward Responsiveness",
       "macro_questionario": "BIS/BAS",
-      "alias": ["REWARD RESPONSE", "REWARD RESP.", "Reward Resp","Reward response","RESPONSIVENESS"],
+      "alias": ["REWARD RESPONSE", "REWARD RESP.", "Reward Resp", "Reward response", "RESPONSIVENESS"],
       "soglie": [
         {
           "min": 5,
           "max": 20,
           "disturbi": [
-            "Other specified disorders due to addictive behaviours",
-            "Disorders due to addictive behaviours, unspecified",
-            "Gambling disorder"
+            "Mild depressive episode",
+            "Generalized anxiety disorder",
+            "Post-traumatic stress disorder"
+          ]
+        },
+        {
+          "min": 21,
+          "max": 28,
+          "disturbi": [
+            "Bipolar disorder type I",
+            "Attention deficit hyperactivity disorder",
+            "Gaming disorder",
+            "Pathological gambling"
           ]
         }
       ]

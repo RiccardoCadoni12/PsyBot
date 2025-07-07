@@ -157,6 +157,7 @@ class YAMLRetriever:
         return list(set(tokens))
 
     # Recupero multiplo: prima per match diretto, poi per similarità semantica
+    @timed
     def multi_concept_retrieve(self, query: str, top_k: int = 6, min_score: float = 0.75) -> List[Document]:
         print(f"[DEBUG] Recupero per query: {query}")
         query_norm = normalize_text(query)
@@ -197,6 +198,7 @@ class YAMLRetriever:
         return unique_docs
 
     # Recupero per casi clinici, basato solo su similarity search (no match diretto)
+    @timed
     def therapeutic_retrieve(self, query: str, top_k: int = 10, max_score: float = 0.8) -> List[Document]:
         print(f"[DEBUG] Recupero terapeutico per query: {query}")
         results = self.vectorstore.similarity_search_with_score(query, k=top_k)
