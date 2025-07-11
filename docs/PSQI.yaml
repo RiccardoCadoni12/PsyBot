@@ -1,12 +1,13 @@
 Questionario: PSQI
 descrizione: >
-  Il Pittsburgh Sleep Quality Index (PSQI), sviluppato nel 1989 presso l'Università di Pittsburgh, 
-  è un questionario autovalutativo che misura la qualità del sonno nel corso dell'ultimo mese. 
-  Composto da 19 domande e 5 domande opzionali per un partner di letto, valuta sette componenti del sonno, 
-  tra cui durata, latenza e disturbi. Ogni componente è valutato su una scala da 0 a 3, 
-  con un punteggio globale che varia da 0 a 21. Un punteggio superiore a 5 indica una qualità del sonno compromessa. 
+ The Pittsburgh Sleep Quality Index (PSQI), developed in 1989 at the University of Pittsburgh,
+  is a self-assessment questionnaire that measures sleep quality over the past month.
+  It consists of 19 questions, plus 5 optional questions for a bed partner,
+  and evaluates seven components of sleep, including duration, latency, and disturbances.
+  Each component is rated on a scale from 0 to 3, resulting in a global score ranging from 0 to 21.
+  A score greater than 5 indicates poor sleep quality.
 
-cosa_misura: qualità del sonno
+cosa_misura: Sleep quality
 valore_minimo: 0
 valore_massimo: 21
-valori_di_riferimento: Un punteggio maggiore 5 suggerisce significative difficoltà nel sonno. 
+valori_di_riferimento: A score above 5 suggests significant sleep difficulties.

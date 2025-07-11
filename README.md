@@ -25,9 +25,11 @@ Successivamente dirigersi nella ricerca del modello ( in alto a sinistra c'è l'
 ![Discover](Immagini/discover.png)
 
 Cercare: 
-    Mistral-7B-Instruct-v0.3-GGUF    
+     
 
-![Mistral](Immagini/mistrral.png)
+TheBloke/Llama-2-7B-Chat-GGUF
+
+![alt text](image.png)
     
 Selezionare nel menù a tendina la quantizzazione  desiderata (più è alta la quantizzazione più è preciso il modello, ma anche più lento)
 

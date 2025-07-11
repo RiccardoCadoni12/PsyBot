@@ -1,15 +1,15 @@
 Questionario: STAI-Y
 descrizione: >
-  Lo State-Trait Anxiety Inventory - Forma Y (STAI-Y) è un questionario psicometrico sviluppato da Charles D. Spielberger 
-  per valutare l'ansia in due dimensioni: ansia di stato (transitoria) e ansia di tratto (stabile). 
-  Composto da 40 item (20 per ciascuna scala), è ampiamente utilizzato in ambito clinico e di ricerca. 
-  La versione italiana, curata da Pedrabissi e Santinello (1989), ha dimostrato una buona affidabilità, 
-  con una consistenza interna tra 0.91 e 0.95 per la scala di stato e tra 0.85 e 0.90 per la scala di tratto. 
-  La stabilità test-retest è di 0.49 per la scala di stato e di 0.82 per quella di tratto.
-cosa_misura: ansia (stato e tratto)
+  The State-Trait Anxiety Inventory – Form Y (STAI-Y) is a psychometric questionnaire developed by Charles D. Spielberger
+  to assess anxiety in two dimensions: state anxiety (temporary) and trait anxiety (stable).
+  It consists of 40 items (20 for each scale) and is widely used in clinical and research settings.
+  The Italian version, developed by Pedrabissi and Santinello (1989), has shown good reliability,
+  with internal consistency ranging from 0.91 to 0.95 for the state scale and 0.85 to 0.90 for the trait scale.
+  Test-retest stability is 0.49 for the state scale and 0.82 for the trait scale.
+cosa_misura: Anxiety (state and trait)
 valore_minimo: 20
 valore_massimo: 80
 valori_di_riferimento: 
-  - 20/37= ansia bassa; 
-  - 38/44= ansia moderata; 
-  - 45/80= ansia elevata. 
+  - 20/37= Low anxiety; 
+  - 38/44= Moderate anxiety; 
+  - 45/80= High anxiety. 

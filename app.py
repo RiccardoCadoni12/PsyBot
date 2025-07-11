@@ -11,8 +11,8 @@ from collections import Counter
 
 
 # === Credenziali per l'accesso all'API ICD-11 ===
-client_id = "01e59d5d-f8fa-483f-bcf3-85e2d5a6718f_f55032df-785b-46d1-ad06-2c92eb5f22a7"
-client_secret = "MFDGMiIDCYbpRgXpvVUj1w8TUyvMePn3FUbIsfxZsSE="
+client_id = "34f7ed28-f4e8-41e8-8671-10927a8f3e55_31f835c7-6d2b-4919-8b02-e1defba409b1" 
+client_secret = "B6Vtd/UBZN8r5/IVFgapvFQf0cUn382TWTOHslGr54o="
 
 # === Decoratore per misurare il tempo di esecuzione di una funzione ===
 def timed(func):
@@ -68,8 +68,9 @@ def icd_search(term, token=None, min_score=0.8):
 
 # === Stampa un risultato ICD in formato leggibile ===
 def log_icd_result(label, risultato):
-    titolo = risultato.get("title", "Titolo non disponibile")
-    print(f"[ICD DEBUG] {label}: {titolo}")
+    titolo = re.sub(r"<[^>]+>", "", risultato.get("title", "Titolo non disponibile") or "").strip()
+
+    print(f"[ICD DEBUG] MAPPING: {label} -> RISULTATO TROVATO: {titolo}")
 
 
 
@@ -161,14 +162,13 @@ def translate_sentence_by_sentence(text):
     return full_translation
 
 
-# === Chiamata al modello Mistral locale tramite API ===
-def ask_mistral(prompt: str) -> str:
+# === Chiamata al modello llama locale tramite API ===
+def ask_llama(prompt: str) -> str:
     try:
         prompt = truncate_prompt(prompt)
         max_tokens = 4096 if len(prompt.split()) >= 20 else 2048
-        start_time = time.time()
         response = requests.post(LM_API_URL, json={
-            "model": "mistral",
+            "model": "llama",
             "messages": [{"role": "user", "content": prompt}],
             "temperature": 0.8,
             "max_tokens": max_tokens,
@@ -214,23 +214,28 @@ def pulisci_query(text):
 
 def get_top_3_disturbi(disturbi_rilevati):
     """
-    Restituisce i 3 disturbi più frequentemente rilevati tra tutti quelli associati ai test.
+    Restituisce i 3 disturbi più frequentemente rilevati tra tutti quelli associati ai test,
+    assicurandosi di includere un solo esempio per ciascun disturbo.
     """
     counter = Counter()
-    for d in disturbi_rilevati:
-        counter[d['disturbo']] += 1
+    esempio_disturbo = dict()
 
+    # Scorri una sola volta la lista
+    for d in disturbi_rilevati:
+        disturbo = d['disturbo']
+        counter[disturbo] += 1
+
+        # Salva un solo esempio per ciascun disturbo
+        if disturbo not in esempio_disturbo:
+            esempio_disturbo[disturbo] = d
+
+    # Prendi i 3 disturbi più frequenti
     top3 = counter.most_common(3)
 
-    # Restituisce in formato coerente
-    top3_disturbi = []
-    for disturbo, count in top3:
-        for d in disturbi_rilevati:
-            if d['disturbo'] == disturbo:
-                top3_disturbi.append(d)
-                break  # Prendi solo un esempio per ciascun disturbo
-    return top3_disturbi
+    # Recupera gli esempi corrispondenti
+    top3_disturbi = [esempio_disturbo[disturbo] for disturbo, _ in top3]
 
+    return top3_disturbi
 # === Genera la risposta del bot in base al contesto ===
 @timed
 def generate_bot_reply(history):
@@ -284,12 +289,13 @@ def generate_bot_reply(history):
             if risultati:
                 key = f"{disturbo.get('test')} - {nome_disturbo}"
                 icd_info[key] = risultati[0]
-                titolo = risultati[0].get("title", "Title unavailable")
-                codice = risultati[0].get("code", risultati[0].get("theCode", "Code unavailable"))
-                icd_docs.append(f"{titolo} (Code: {codice})")
+                titolo = risultati[0].get("title", "Title unavailable") # Titolo
+                codice = risultati[0].get("code", risultati[0].get("theCode", "Code unavailable")) # Codice
+                definition = risultati[0].get("definition", {}).get("value", "")
+                icd_docs.append(f"{titolo} (Code: {codice}) {definition}")
+                # Aggiungi descrizione e info disturbi "description"
                 log_icd_result(key, risultati[0])
 
-        rag_txt = "\n".join([doc.page_content for doc in rag_docs])
         icd_txt = "\n".join(icd_docs)
         print("[CONTEXT] TOP 3 DISORDERS – ranked clinical suspicion based on scores")
         prompt = (
@@ -305,7 +311,6 @@ def generate_bot_reply(history):
             "- [Brief clinical description: course, functional impact, typical presentation]\n"
             "- [Common symptoms]\n"
             "Patient test data:\n{user_input}\n\n"
-            "Local clinical documents:\n{rag_txt}\n\n"
             "ICD-11 references:\n{icd_txt}\n\n"
             "Answer:"
         )
@@ -377,7 +382,7 @@ def generate_bot_reply(history):
         )
     
     # Invio al modello e aggiornamento della cronologia
-    reply = ask_mistral(prompt)
+    reply = ask_llama(prompt)
     print("\n[🔁 TRADUZIONE ITALIANA]")
     print(translate_sentence_by_sentence(reply))
     history.append({"role": "assistant", "content": reply})

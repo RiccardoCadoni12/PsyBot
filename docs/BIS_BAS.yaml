@@ -1,14 +1,14 @@
 Questionario: BIS/BAS
 descrizione: >
-  Le scale BIS/BAS, sviluppate da Carver e White nel 1994, valutano due sistemi motivazionali: 
-  il sistema di inibizione comportamentale (BIS) e il sistema di attivazione comportamentale (BAS). 
-  Il BIS è associato alla sensibilità alla punizione e all'evitamento, 
-  mentre il BAS è legato alla sensibilità alla ricompensa e all'approccio. 
-  Il questionario comprende 24 item suddivisi in quattro sottoscale: BIS, BAS Drive, BAS Fun Seeking e BAS Reward Responsiveness. 
-  I punteggi variano da 7 a 28 per il BIS e da 13 a 52 per il BAS.
-cosa_misura: sensibilità alla punizione (BIS) e alla ricompensa (BAS)
+ The BIS/BAS scales, developed by Carver and White in 1994, assess two motivational systems:
+  the Behavioral Inhibition System (BIS) and the Behavioral Activation System (BAS).
+  The BIS is associated with sensitivity to punishment and avoidance,
+  while the BAS is related to sensitivity to reward and approach behaviors.
+  The questionnaire includes 24 items divided into four subscales: BIS, BAS Drive, BAS Fun Seeking, and BAS Reward Responsiveness.
+  Scores range from 7 to 28 for BIS and 13 to 52 for BAS.
+cosa_misura: Sensitivity to punishment (BIS) and reward (BAS)
 valore_minimo: BIS=7; BAS=13
 valore_massimo: BIS=28; BAS=52
 valori_di_riferimento: 
-   - Punteggi più alti nel BIS indicano una maggiore sensibilità alla punizione; 
-   - punteggi più alti nel BAS indicano una maggiore sensibilità alla ricompensa.
+   - Higher BIS scores indicate greater sensitivity to punishment
+   - Higher BAS scores indicate greater sensitivity to reward

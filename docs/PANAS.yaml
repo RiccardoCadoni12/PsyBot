@@ -1,11 +1,12 @@
 Questionario: PANAS
 descrizione: >
-  Il Positive and Negative Affect Schedule (PANAS), sviluppato da Watson, Clark e Tellegen nel 1988, 
-  è un questionario composto da 20 aggettivi che misurano due dimensioni affettive: 
-  affetto positivo (PA) e affetto negativo (NA). Ogni scala comprende 10 item valutati su una scala Likert a 5 punti. 
-  La versione italiana ha mostrato una buona affidabilità, 
-  con coefficienti di consistenza interna tra 0.86 e 0.90 per la scala PA e tra 0.84 e 0.87 per la scala NA. 
-cosa_misura: affetto positivo e negativo
+  The Positive and Negative Affect Schedule (PANAS), developed by Watson, Clark, and Tellegen in 1988,
+  is a questionnaire composed of 20 adjectives that measure two affective dimensions:
+  Positive Affect (PA) and Negative Affect (NA).
+  Each scale consists of 10 items, rated on a 5-point Likert scale.
+  The Italian version has shown good reliability,
+  with internal consistency coefficients ranging from 0.86 to 0.90 for the PA scale and 0.84 to 0.87 for the NA scale.
+cosa_misura: Positive and negative affect
 valore_minimo: 10
 valore_massimo: 50
-valori_di_riferimento: Punteggi più alti indicano una maggiore intensità dell'affetto misurato.
+valori_di_riferimento: Higher scores indicate greater intensity of the measured affect.
