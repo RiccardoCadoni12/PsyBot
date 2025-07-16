@@ -14,7 +14,7 @@
           "max": 10,
           "disturbi": [
             "Generalized anxiety disorder",
-            "Mild depressive episode",
+            "Depressive disorders",
             "Obsessive–compulsive disorder",
             "Social anxiety disorder"
           ]
@@ -41,7 +41,7 @@
           "min": 16,
           "max": 30,
           "disturbi": [
-            "Mild depressive episode",
+            "Depressive disorders",
             "Bipolar disorder type I",
             "Recurrent depressive disorder",
             "Attention deficit hyperactivity disorder, inattentive presentation",
@@ -116,7 +116,7 @@
           "max": 25,
           "disturbi": [
             "Bipolar disorder type I",
-            "Mild depressive episode",
+            "Depressive disorders",
             "Recurrent depressive disorder",
             "Obsessive–compulsive disorder",
             "Autism spectrum disorder",
@@ -129,9 +129,7 @@
           "max": 50,
           "disturbi": [
             "Bipolar disorder type I",
-            "Attention deficit hyperactivity disorder",
-            "Schizophrenia",
-            "Schizoaffective disorder"
+            "Attention deficit hyperactivity disorder"
           ]
         }
       ]
@@ -145,8 +143,6 @@
           "min": 10,
           "max": 24,
           "disturbi": [
-            "Schizophrenia",
-            "Schizoaffective disorder",
             "Attention deficit hyperactivity disorder",
             "Generalized anxiety disorder"
           ]
@@ -156,7 +152,7 @@
           "max": 50,
           "disturbi": [
             "Bipolar disorder type I",
-            "Mild depressive episode",
+            "Depressive disorders",
             "Recurrent depressive disorder",
             "Obsessive–compulsive disorder",
             "Borderline pattern personality disorder",
@@ -202,7 +198,7 @@
           "max": 16,
           "disturbi": [
             "Bipolar disorder type I",
-            "Mild depressive episode",
+            "Depressive disorders",
             "Autism spectrum disorder",
             "Post-traumatic stress disorder"
           ]
@@ -268,7 +264,7 @@
           "min": 5,
           "max": 20,
           "disturbi": [
-            "Mild depressive episode",
+            "Depressive disorders",
             "Generalized anxiety disorder",
             "Obsessive–compulsive disorder",
             "Post-traumatic stress disorder"
