@@ -1,8 +1,8 @@
-# Importazione librerie necessarie
-import gradio as gr 
+# Import necessary libraries
+import gradio as gr
 import requests
 import time
-from rag_retriever import YAMLRetriever  # Classe personalizzata per il recupero RAG da YAML
+from rag_retriever import YAMLRetriever
 import re
 import json
 import os
@@ -10,11 +10,11 @@ from transformers import MarianMTModel, MarianTokenizer
 from collections import Counter
 
 
-# === Credenziali per l'accesso all'API ICD-11 ===
-client_id = "34f7ed28-f4e8-41e8-8671-10927a8f3e55_31f835c7-6d2b-4919-8b02-e1defba409b1" 
+# === ICD-11 API credentials ===
+client_id = "34f7ed28-f4e8-41e8-8671-10927a8f3e55_31f835c7-6d2b-4919-8b02-e1defba409b1"
 client_secret = "B6Vtd/UBZN8r5/IVFgapvFQf0cUn382TWTOHslGr54o="
 
-# === Decoratore per misurare il tempo di esecuzione di una funzione ===
+# === Decorator for measuring execution time ===
 def timed(func):
     def wrapper(*args, **kwargs):
         start = time.time()
@@ -24,7 +24,7 @@ def timed(func):
         return result
     return wrapper
 
-# === Funzione per ottenere un token ICD-11 ===
+# === Obtain ICD token ===
 def get_icd_token(client_id, client_secret):
     auth_url = "https://icdaccessmanagement.who.int/connect/token"
     data = {
@@ -40,81 +40,75 @@ def get_icd_token(client_id, client_secret):
         print(f"[ICD ERROR] Token request failed: {response.status_code} - {response.text}")
         return None
 
-# === Funzione per cercare un termine nell'ICD-11 ===
+# === Search ICD-11 for a term ===
 @timed
 def icd_search(term, token=None, min_score=0.8):
-
     if token is None:
         token = get_icd_token(client_id, client_secret)
     if token is None:
         return []
-
+    
     search_url = f"https://id.who.int/icd/release/11/2022-02/mms/search?q={term}"
     headers = {
         'Authorization': f'Bearer {token}',
         'API-Version': 'v2',
         'Accept-Language': 'en'
     }
-
     response = requests.get(search_url, headers=headers)
     if response.status_code == 200:
         entities = response.json().get('destinationEntities', [])
-        # Filtra i risultati con un punteggio minimo
         filtered = [e for e in entities if float(e.get('score', 0)) > min_score]
         return filtered
     else:
         print(f"[ICD ERROR] Search failed: {response.status_code}")
         return []
 
-# === Stampa un risultato ICD in formato leggibile ===
-def log_icd_result(label, risultato):
-    titolo = re.sub(r"<[^>]+>", "", risultato.get("title", "Titolo non disponibile") or "").strip()
+# === Print an ICD search result in readable format ===
+def log_icd_result(label, result):
+    title = re.sub(r"<[^>]+>", "", result.get("title", "Title unavailable") or "").strip()
+    print(f"[ICD DEBUG] MAPPING: {label} -> FOUND RESULT: {title}")
 
-    print(f"[ICD DEBUG] MAPPING: {label} -> RISULTATO TROVATO: {titolo}")
-
-
-
-# === Caricamento parole chiave terapeutiche da file JSON ===
+# === Load therapeutic keywords from JSON ===
 TERAPIA_JSON_PATH = os.path.join(os.getcwd(), "parole_terapia.json")
 
-# === Caricamento soglie dei punteggi dei questionari da file JSON ===
+# === Load questionnaire score thresholds from JSON ===
 QUESTIONARI_JSON_PATH = os.path.join(os.getcwd(), "soglie_questionari.json")
+
 try:
     with open(QUESTIONARI_JSON_PATH, "r", encoding="utf-8") as f:
         soglie_questionari = json.load(f)
-        print(f"[LOG] Caricate soglie questionari da {QUESTIONARI_JSON_PATH}")
+        print(f"[LOG] Loaded questionnaire thresholds from {QUESTIONARI_JSON_PATH}")
 except Exception as e:
-    print(f"[ERRORE] Impossibile caricare soglie_questionari.json: {e}")
+    print(f"[ERROR] Unable to load soglie_questionari.json: {e}")
     soglie_questionari = {}
 
 try:
     with open(TERAPIA_JSON_PATH, "r", encoding="utf-8") as f:
         parole_data = json.load(f)
         parole_terapia = parole_data.get("parole_terapia", [])
-        print(f"[LOG] Caricate parole terapeutiche: {parole_terapia}")
+        print(f"[LOG] Loaded therapy keywords: {parole_terapia}")
 except Exception as e:
-    print(f"[ERRORE] Impossibile caricare parole_terapia.json: {e}")
+    print(f"[ERROR] Unable to load parole_terapia.json: {e}")
     parole_terapia = []
 
-# === Inizializzazione del retriever RAG ===
+# === Initialize the RAG retriever ===
 retriever = YAMLRetriever()
 
-# === URL dell'istanza locale del modello LLM ===
+# === Local LLM API URL ===
 LM_API_URL = "http://127.0.0.1:1234/v1/chat/completions"
 MAX_PROMPT_TOKENS = 1800
 
-# === Estrai punteggi da testo formattato tipo "BDI: 20" ===
+# === Extract scores from text ===
 def estrai_punteggi(text):
     pattern = r"([A-Z-]+):\s*([0-9]+)"
     return {k.strip(): int(v.strip()) for k, v in re.findall(pattern, text.upper())}
 
-# === Mappa i punteggi dei test ai disturbi in base al file soglie_questionari.json ===
+# === Map scores to disorders based on threshold file ===
 def mappa_punteggi_a_disturbi(punteggi, file_path='soglie_questionari.json'):
     with open(file_path, 'r', encoding='utf-8') as f:
         soglie_data = json.load(f)
-
+    
     disturbi_rilevati = []
-
     for questionario in soglie_data['questionari']:
         nomi_validi = [questionario['nome'].upper()] + [alias.upper() for alias in questionario.get('alias', [])]
         for nome in nomi_validi:
@@ -127,26 +121,25 @@ def mappa_punteggi_a_disturbi(punteggi, file_path='soglie_questionari.json'):
                                 'test': questionario['nome'],
                                 'disturbo': disturbo
                             })
-                        break  # Interrompe se trova la soglia corretta
-    print(f"[DEBUG] Punteggi rilevati: {punteggi}")
+                        break
+    print(f"[DEBUG] Detected scores: {punteggi}")
     return disturbi_rilevati
 
-# === Tronca il prompt se supera il numero massimo di token ===
+# === Truncate prompt if too long ===
 def truncate_prompt(prompt: str, max_tokens: int = MAX_PROMPT_TOKENS) -> str:
     words = prompt.split()
     if len(words) > max_tokens:
-        print("[DEBUG] Prompt troppo lungo, taglio in corso...")
+        print("[DEBUG] Prompt too long, truncating...")
         return " ".join(words[-max_tokens:])
     return prompt
+
 @timed
 def translate_sentence_by_sentence(text):
     model_name = 'Helsinki-NLP/opus-mt-en-it'
     tokenizer = MarianTokenizer.from_pretrained(model_name)
     model = MarianMTModel.from_pretrained(model_name)
     
-    # Divido il testo in frasi con regex: considera ., !, ? come fine frase
     sentences = re.split(r'(?<=[.!?])\s+', text.strip())
-    
     translated_sentences = []
     
     for sentence in sentences:
@@ -157,12 +150,10 @@ def translate_sentence_by_sentence(text):
         translation = tokenizer.decode(translated[0], skip_special_tokens=True)
         translated_sentences.append(translation)
     
-    # Unisco tutte le frasi tradotte con uno spazio
     full_translation = " ".join(translated_sentences)
     return full_translation
 
-
-# === Chiamata al modello llama locale tramite API ===
+# === Call local LLM model ===
 def ask_llama(prompt: str) -> str:
     try:
         prompt = truncate_prompt(prompt)
@@ -174,7 +165,6 @@ def ask_llama(prompt: str) -> str:
             "max_tokens": max_tokens,
             "stop": ["\n\n", "User:"]
         })
-        
         data = response.json()
         if isinstance(data, dict) and "choices" in data and data["choices"]:
             reply = data["choices"][0]["message"]["content"]
@@ -187,7 +177,6 @@ def ask_llama(prompt: str) -> str:
         print(f"[ERROR] Model call failed: {e}")
         return "Error communicating with the model."
 
-# === Aggiunge messaggio dell'utente alla cronologia ===
 @timed
 def add_user_message(user_input, history):
     if history is None:
@@ -195,17 +184,16 @@ def add_user_message(user_input, history):
     history.append({"role": "user", "content": user_input})
     return history, history, ""
 
-# === Pulisce la query da frasi comuni inutili per il retrieval ===
 def pulisci_query(text):
     text = text.lower()
     stop_phrases = [
-        "cosa è", "cos'è", "che cos'è", "che cosa è","e che cosa è","cosa è il"
+        "cosa è", "cos'è", "che cos'è", "che cosa è", "e che cosa è", "cosa è il",
         "cosa sono", "che cos'è un", "che cos'è una",
         "dimmi", "spiegami", "mi puoi dire", "vorrei sapere", "sai dirmi", "definizione di",
         "che significa", "puoi spiegarmi", "spiega", "significa", "che cos’e",
         "what is", "what's", "what is the", "and what is", "what are",
         "what is a", "what is an", "define", "definition of",
-        "tell me", "can you tell me", "i would like to know", "do you know", 
+        "tell me", "can you tell me", "i would like to know", "do you know",
         "explain", "can you explain", "what does it mean", "means", "meaning of"
     ]
     for phrase in stop_phrases:
@@ -213,30 +201,17 @@ def pulisci_query(text):
     return text.strip(" ?:\n\r").strip()
 
 def get_top_3_disturbi(disturbi_rilevati):
-    """
-    Restituisce i 3 disturbi più frequentemente rilevati tra tutti quelli associati ai test,
-    assicurandosi di includere un solo esempio per ciascun disturbo.
-    """
     counter = Counter()
-    esempio_disturbo = dict()
-
-    # Scorri una sola volta la lista
+    example_disturbo = dict()
     for d in disturbi_rilevati:
         disturbo = d['disturbo']
         counter[disturbo] += 1
-
-        # Salva un solo esempio per ciascun disturbo
-        if disturbo not in esempio_disturbo:
-            esempio_disturbo[disturbo] = d
-
-    # Prendi i 3 disturbi più frequenti
+        if disturbo not in example_disturbo:
+            example_disturbo[disturbo] = d
     top3 = counter.most_common(3)
-
-    # Recupera gli esempi corrispondenti
-    top3_disturbi = [esempio_disturbo[disturbo] for disturbo, _ in top3]
-
+    top3_disturbi = [example_disturbo[disturbo] for disturbo, _ in top3]
     return top3_disturbi
-# === Genera la risposta del bot in base al contesto ===
+
 @timed
 def generate_bot_reply(history):
     if not history:
@@ -244,10 +219,9 @@ def generate_bot_reply(history):
 
     user_input = history[-1]["content"] if history[-1]["role"] == "user" else history[-2]["content"]
     lowered = user_input.lower()
-
-    # Rileva il contesto: questionari, terapia, o generico
-    has_score_keywords = any(term in lowered for term in ["score", "scores", "obtained", ":","questionnaire","questionnaires"])
-    has_new_terms = any(term in lowered for term in ["most likely", "three", "output","following"])
+    
+    has_score_keywords = any(term in lowered for term in ["score", "scores", "obtained", ":", "questionnaire", "questionnaires"])
+    has_new_terms = any(term in lowered for term in ["most likely", "three", "output", "following"])
     has_therapy_speaker = re.search(r'\b(patient|counselor)\s*[:]', lowered)
     has_therapy_keywords = any(p in lowered for p in parole_terapia)
     is_therapeutic_context = bool(has_therapy_speaker or (has_therapy_keywords and len(lowered) > 500))
@@ -257,15 +231,14 @@ def generate_bot_reply(history):
     rag_docs = retriever.multi_concept_retrieve(user_input)
     disturbi_sospetti = []
 
-    # === Analisi contesto terapeutico ===
     if is_therapeutic_context:
         query = pulisci_query(user_input.strip())
-        risultati = icd_search(query)
-        if risultati:
-            titolo = risultati[0].get("title", "Title unavailable")
-            codice = risultati[0].get("code", risultati[0].get("theCode", "Code unavailable"))
-            icd_docs.append(f"{titolo} (Code: {codice})")
-            log_icd_result("THERAPY", risultati[0])
+        results = icd_search(query)
+        if results:
+            title = results[0].get("title", "Title unavailable")
+            code = results[0].get("code", results[0].get("theCode", "Code unavailable"))
+            icd_docs.append(f"{title} (Code: {code})")
+            log_icd_result("THERAPY", results[0])
 
         rag_txt = "\n".join([doc.page_content for doc in rag_docs])
         icd_txt = "\n".join(icd_docs)
@@ -278,26 +251,24 @@ def generate_bot_reply(history):
             f"{user_input}\n\n"
             "Provide a concise clinical assessment:"
         )
+
     elif has_new_terms:
         punteggi = estrai_punteggi(user_input)
         disturbi_sospetti = mappa_punteggi_a_disturbi(punteggi)
-
         top3_disturbi = get_top_3_disturbi(disturbi_sospetti)
         for disturbo in top3_disturbi:
             nome_disturbo = disturbo.get("disturbo", "")
-            risultati = icd_search(nome_disturbo)
-            if risultati:
+            results = icd_search(nome_disturbo)
+            if results:
                 key = f"{disturbo.get('test')} - {nome_disturbo}"
-                icd_info[key] = risultati[0]
-                titolo = risultati[0].get("title", "Title unavailable") # Titolo
-                codice = risultati[0].get("code", risultati[0].get("theCode", "Code unavailable")) # Codice
-                definition = risultati[0].get("definition", {}).get("value", "")
-                icd_docs.append(f"{titolo} (Code: {codice}) {definition}")
-                # Aggiungi descrizione e info disturbi "description"
-                log_icd_result(key, risultati[0])
-
+                icd_info[key] = results[0]
+                title = results[0].get("title", "Title unavailable")
+                code = results[0].get("code", results[0].get("theCode", "Code unavailable"))
+                definition = results[0].get("definition", {}).get("value", "")
+                icd_docs.append(f"{title} (Code: {code}) {definition}")
+                log_icd_result(key, results[0])
         icd_txt = "\n".join(icd_docs)
-        print("[CONTEXT] TOP 3 DISORDERS – ranked clinical suspicion based on scores")
+        print("TOP 3 DISORDERS - SCORES QUESTIONNAIRE ")
         prompt = (
             "You are a highly specialized clinical assistant that evaluates psychometric questionnaire scores.\n"
             "Always respond in professional English.\n"
@@ -305,30 +276,29 @@ def generate_bot_reply(history):
             "Based on the test scores and retrieved clinical and diagnostic documents, identify the three most likely psychological disorders to consider clinically.\n"
             "Avoid general speculation not supported by the retrieved content.\n"
             "Do NOT list disorders without giving full clinical justification.\n"
-            "Only include disorders that are explicitly referenced in the documents.\n"
+            "Only include disorders explicitly referenced in the documents.\n"
             "For each suspected disorder, provide:\n"
             "- [Name of the disorder]\n"
             "- [Brief clinical description: course, functional impact, typical presentation]\n"
             "- [Common symptoms]\n"
-            "Patient test data:\n{user_input}\n\n"
-            "ICD-11 references:\n{icd_txt}\n\n"
+            f"Patient test data:\n{user_input}\n\n"
+            f"ICD-11 references:\n{icd_txt}\n\n"
             "Answer:"
         )
-    # === Analisi punteggi test ===
+
     elif has_score_keywords:
         punteggi = estrai_punteggi(user_input)
         disturbi_sospetti = mappa_punteggi_a_disturbi(punteggi)
-
         for disturbo in disturbi_sospetti:
             nome_disturbo = disturbo.get("disturbo", "")
-            risultati = icd_search(nome_disturbo)
-            if risultati:
+            results = icd_search(nome_disturbo)
+            if results:
                 key = f"{disturbo.get('test')} - {nome_disturbo}"
-                icd_info[key] = risultati[0]
-                titolo = risultati[0].get("title", "Title unavailable")
-                codice = risultati[0].get("code", risultati[0].get("theCode", "Code unavailable"))
-                icd_docs.append(f"{titolo} (Code: {codice})")
-                log_icd_result(key, risultati[0])
+                icd_info[key] = results[0]
+                title = results[0].get("title", "Title unavailable")
+                code = results[0].get("code", results[0].get("theCode", "Code unavailable"))
+                icd_docs.append(f"{title} (Code: {code})")
+                log_icd_result(key, results[0])
 
         rag_txt = "\n".join([doc.page_content for doc in rag_docs])
         icd_txt = "\n".join(icd_docs)
@@ -346,27 +316,9 @@ def generate_bot_reply(history):
             "Detailed diagnostic analysis:"
         )
     
-   
-       
 
-    # === Contesto generale ===
     else:
-        query = pulisci_query(user_input.strip())
-        risultati = icd_search(query)
-        if risultati:
-            titolo = risultati[0].get("title", "Title unavailable")
-            codice = risultati[0].get("code", risultati[0].get("theCode", "Code unavailable"))
-            icd_docs.append(f"{titolo} (Code: {codice})")
-            log_icd_result("GENERAL", risultati[0])
-
         rag_txt = "\n".join([doc.page_content for doc in rag_docs])
-        icd_txt = "\n".join(icd_docs)
-
-        if not rag_txt and not icd_txt:
-            reply = "I did not find relevant information in local documents or ICD-11. Could you please rephrase your question?"
-            history.append({"role": "assistant", "content": reply})
-            return history, history
-
         print("[CONTEXT] GENERAL – searching for mental disorder or psychological concept")
         prompt = (
             "You are a clinical assistant expert in mental health disorders and psychological tools.\n"
@@ -381,7 +333,8 @@ def generate_bot_reply(history):
             "Provide a clear and informative response:"
         )
     
-    # Invio al modello e aggiornamento della cronologia
+
+# Invio al modello e aggiornamento della cronologia
     reply = ask_llama(prompt)
     print("\n[🔁 TRADUZIONE ITALIANA]")
     print(translate_sentence_by_sentence(reply))

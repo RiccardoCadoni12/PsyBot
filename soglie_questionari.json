@@ -23,6 +23,7 @@
           "min": 11,
           "max": 21,
           "disturbi": [
+            
             "Bipolar disorder type I",
             "Post-traumatic stress disorder",
             "Bipolar disorder type II",
@@ -97,8 +98,10 @@
           "max": 80,
           "disturbi": [
             "Obsessive–compulsive disorder",
-            "Post-traumatic stress disorder",
-            "Borderline pattern personality disorder"
+            "Borderline pattern personality disorder",
+            "Schizophrenia",
+            "Schizoaffective disorder"
+            
           ]
         }
       ]
@@ -115,6 +118,7 @@
             "Bipolar disorder type I",
             "Mild depressive episode",
             "Recurrent depressive disorder",
+            "Obsessive–compulsive disorder",
             "Autism spectrum disorder",
             "Post-traumatic stress disorder",
             "Generalized anxiety disorder"
@@ -125,7 +129,9 @@
           "max": 50,
           "disturbi": [
             "Bipolar disorder type I",
-            "Attention deficit hyperactivity disorder, inattentive presentation"
+            "Attention deficit hyperactivity disorder",
+            "Schizophrenia",
+            "Schizoaffective disorder"
           ]
         }
       ]
@@ -139,6 +145,8 @@
           "min": 10,
           "max": 24,
           "disturbi": [
+            "Schizophrenia",
+            "Schizoaffective disorder",
             "Attention deficit hyperactivity disorder",
             "Generalized anxiety disorder"
           ]
@@ -150,8 +158,8 @@
             "Bipolar disorder type I",
             "Mild depressive episode",
             "Recurrent depressive disorder",
+            "Obsessive–compulsive disorder",
             "Borderline pattern personality disorder",
-            "Post-traumatic stress disorder",
             "Generalized anxiety disorder"
           ]
         }
@@ -178,8 +186,8 @@
             "Generalized anxiety disorder",
             "Obsessive–compulsive disorder",
             "Panic disorder",
-            "Borderline pattern personality disorder",
-            "Post-traumatic stress disorder"
+            "Borderline pattern personality disorder"
+            
           ]
         }
       ]
@@ -212,7 +220,6 @@
           "max": 30,
           "disturbi": [
             "Bipolar disorder type I",
-            "Attention deficit hyperactivity disorder",
             "Pathological gambling"
           ]
         }
@@ -230,6 +237,7 @@
             "Bipolar disorder type I",
             "Recurrent depressive disorder",
             "Post-traumatic stress disorder"
+            
           ]
         },
         {
@@ -262,6 +270,7 @@
           "disturbi": [
             "Mild depressive episode",
             "Generalized anxiety disorder",
+            "Obsessive–compulsive disorder",
             "Post-traumatic stress disorder"
           ]
         },
