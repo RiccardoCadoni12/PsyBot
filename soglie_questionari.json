@@ -107,6 +107,40 @@
       ]
     },
     {
+      "nome": "DSI",
+      "alias": ["Daily Stress Index","Daily Stress","Stress Index","Daily Index"],
+      "soglie": [
+        {
+          "min": 1,
+          "max": 2,
+          "disturbi": [
+            "Adjustment disorder",
+            "Mild depressive episode"
+          ]
+        },
+        {
+          "min": 3,
+          "max": 4,
+          "disturbi": [
+            "Generalized anxiety disorder",
+            "Panic disorder",
+            "Somatic symptom disorder",
+            "Social anxiety disorder"
+          ]
+        },
+        {
+          "min": 5,
+          "max": 7,
+          "disturbi": [
+            "Obsessive–compulsive disorder",
+            "Borderline pattern personality disorder",
+            "Post-traumatic stress disorder",
+            "Schizoaffective disorder"
+          ]
+        }
+      ]
+    },
+    {
       "nome": "PA",
       "macro_questionario": "PANAS",
       "alias": ["positive affect"],
