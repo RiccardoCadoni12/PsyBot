@@ -62,10 +62,20 @@
         },
         {
           "min": 61,
-          "max": 86,
+          "max": 65,
           "disturbi": [
             "Bipolar disorder type I",
-            "Bipolar disorder type II"
+            "Bipolar disorder type II",
+            "Schizophrenia",
+            "Schizoaffective disorder"
+          ]
+        },
+        {
+          "min": 66,
+          "max": 80,
+          "disturbi": [
+            "Schizophrenia",
+            "Schizoaffective disorder"
           ]
         }
       ]
@@ -115,7 +125,7 @@
           "max": 2,
           "disturbi": [
             "Adjustment disorder",
-            "Mild depressive episode"
+            "Depressive disorders"
           ]
         },
         {
@@ -163,7 +173,16 @@
           "max": 50,
           "disturbi": [
             "Bipolar disorder type I",
-            "Attention deficit hyperactivity disorder"
+            "Attention deficit hyperactivity disorder",{
+          "min": 61,
+          "max": 65,
+          "disturbi": [
+            "Bipolar disorder type I",
+            "Bipolar disorder type II",
+            "Schizophrenia",
+            "Schizoaffective disorder"
+          ]
+        }
           ]
         }
       ]
@@ -205,7 +224,9 @@
           "max": 19,
           "disturbi": [
             "Attention deficit hyperactivity disorder",
-            "Conduct disorder"
+            "Conduct disorder", 
+            "Schizophrenia",
+            "Schizoaffective disorder"
           ]
         },
         {
@@ -274,7 +295,9 @@
           "min": 17,
           "max": 20,
           "disturbi": [
-            "Obsessive–compulsive disorder"
+            "Obsessive–compulsive disorder",
+            "Schizophrenia",
+            "Schizoaffective disorder"
           ]
         },
         {

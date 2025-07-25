@@ -10,3 +10,5 @@ chromadb
 langdetect
 transformers 
 sentencepiece
+spacy
+en_core_web_sm

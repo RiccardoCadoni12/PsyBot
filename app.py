@@ -8,6 +8,7 @@ import json
 import os
 from transformers import MarianMTModel, MarianTokenizer
 from collections import Counter
+import spacy
 
 
 # === ICD-11 API credentials ===
@@ -42,31 +43,178 @@ def get_icd_token(client_id, client_secret):
 
 # === Search ICD-11 for a term ===
 @timed
-def icd_search(term, token=None, min_score=0.8):
-    if token is None:
-        token = get_icd_token(client_id, client_secret)
-    if token is None:
-        return []
+def icd_search(term: str, question_type: str) -> list[dict]:
     
+    """
+    Searches the ICD-11 API using the provided term and returns cleaned entity data.
+    """
+    token = get_icd_token(client_id, client_secret)
     search_url = f"https://id.who.int/icd/release/11/2022-02/mms/search?q={term}"
     headers = {
         'Authorization': f'Bearer {token}',
         'API-Version': 'v2',
         'Accept-Language': 'en'
     }
-    response = requests.get(search_url, headers=headers)
-    if response.status_code == 200:
-        entities = response.json().get('destinationEntities', [])
-        filtered = [e for e in entities if float(e.get('score', 0)) > min_score]
-        return filtered
-    else:
-        print(f"[ICD ERROR] Search failed: {response.status_code}")
+
+    
+
+    try:
+        response = requests.get(search_url, headers=headers, timeout=10)
+        response.raise_for_status()
+    except requests.RequestException as e:
         return []
+
+    try:
+        entities = response.json().get('destinationEntities', [])
+        
+        sorted_entities = sorted(entities, key=lambda x: float(x.get('score', 0)), reverse=True)
+        best_match = sorted_entities[0]
+    
+        if question_type in ("clinical", "definition"):
+            entity_url = best_match.get("id")
+            if not entity_url:
+                print("[ICD] No entity URL found.")
+                return []
+
+            try:
+                full_resp = requests.get(entity_url, headers=headers, timeout=10)
+                full_resp.raise_for_status()
+                full_entity = full_resp.json()
+
+                if not full_entity.get("definition"):
+                    parent_urls = full_entity.get("parent", [])
+                    if parent_urls:
+                        parent_resp = requests.get(parent_urls[0], headers=headers, timeout=10)
+                        parent_resp.raise_for_status()
+                        parent_entity = parent_resp.json()
+                        parent_def = parent_entity.get("definition", {})
+                        if isinstance(parent_def, dict):
+                            full_entity["definition"] = parent_def.get("@value", "") or parent_def.get("value", "")
+                        elif isinstance(parent_def, str):
+                            full_entity["definition"] = parent_def
+
+                if not full_entity.get("definition"):
+                    full_entity["definition"] = "No definition available from ICD-11."
+
+               
+                return [full_entity]
+
+            except requests.RequestException as e:
+                print(f"[ICD_ERROR] Failed to retrieve full entity: {e}")
+                return []
+
+        else:
+            print("[ICD] Returning best match stub (no enrichment).")
+            return [best_match]
+
+    except Exception as e:
+        return []
+
+
+def icd_lookup_cleaned_term(term):
+    # Pulizia base (esempio)
+    clean_term = term.lower().strip()
+
+    # Endpoint ICD-11 API (esempio, modifica con il tuo URL)
+    url = f"https://icd11restapi.who.int/icd11/2023/mms/search?term={clean_term}&matchMethod=exactMatch&limit=5"
+
+    headers = {
+        "Accept": "application/json",
+        # Se serve, aggiungi qui token o altre intestazioni
+    }
+
+    response = requests.get(url, headers=headers)
+
+    if response.status_code == 200:
+        data = response.json()
+        # Qui estrai i risultati importanti dal JSON
+        results = []
+        for item in data.get("destinationEntities", []):
+            title = item.get("title", {}).get("value", "N/A")
+            code = item.get("code", "N/A")
+            definition = item.get("definition", [{}])[0].get("value", "No definition available")
+            results.append({"title": title, "code": code, "definition": definition})
+        return results
+    else:
+        return None
+    
+
+def get_icd_info_from_input(user_input: str) -> list[dict]:
+    """
+    Estrae un possibile disturbo dal testo dell'utente, lo pulisce e cerca info ICD-11.
+    Restituisce una lista di dizionari con 'title', 'code' e 'definition'.
+    """
+    cleaned = pulisci_query(user_input)
+    print(f"[DEBUG] Cleaned input for ICD extraction: '{cleaned}'")
+
+    disturbi = detect_disorders(cleaned)
+    if not disturbi:
+        print("[ICD INFO] Nessun disturbo riconosciuto.")
+        return []
+
+    results = []
+    for disturbo in disturbi:
+        res = icd_lookup_cleaned_term(disturbo)
+        if not res:
+            print(f"[ICD INFO] Nessun risultato per '{disturbo}'")
+            continue
+
+        r = res[0]
+        title = r.get("title", "N/A")
+        code = r.get("code", r.get("theCode", "N/A"))
+        raw_def = r.get("definition", {})
+        if isinstance(raw_def, dict):
+            definition = raw_def.get("value", "") or raw_def.get("@value", "")
+        else:
+            definition = raw_def or ""
+
+        results.append({
+            "term": disturbo,
+            "title": title,
+            "code": code,
+            "definition": definition
+        })
+
+    return results
+
+
+def format_icd_info_for_display(icd_data: list[dict]) -> str:
+    """
+    Format ICD data (title, code, definition) as a readable block like 'Top 3 Scores'.
+    """
+    if not icd_data:
+        return "No ICD-11 information found."
+
+    output = "[ICD-11 Results]\n"
+    for item in icd_data:
+        output += (
+            f"\n• Disorder: {item['title']} (Code: {item['code']})\n"
+            f"  Definition: {item['definition']}\n"
+        )
+    return output
+
+
 
 # === Print an ICD search result in readable format ===
 def log_icd_result(label, result):
-    title = re.sub(r"<[^>]+>", "", result.get("title", "Title unavailable") or "").strip()
-    print(f"[ICD DEBUG] MAPPING: {label} -> FOUND RESULT: {title}")
+
+
+    raw_title = result.get("title", "Title unavailable")
+    if isinstance(raw_title, dict):
+        title = raw_title.get("@value", raw_title.get("value", "Title unavailable"))
+    else:
+        title = raw_title
+    title = re.sub(r"<[^>]+>", "", title or "").strip()
+
+    code = result.get("code", result.get("theCode", "Code unavailable"))
+
+    raw_def = result.get("definition", {})
+    if isinstance(raw_def, dict):
+        definition = raw_def.get("value", raw_def.get("@value", ""))
+    else:
+        definition = raw_def or ""
+
+    print(f"[ICD DEBUG] MAPPING: {label} -> {title} (Code: {code})\nDefinition: {definition}\n")
 
 # === Load therapeutic keywords from JSON ===
 TERAPIA_JSON_PATH = os.path.join(os.getcwd(), "parole_terapia.json")
@@ -212,6 +360,61 @@ def get_top_3_disturbi(disturbi_rilevati):
     top3_disturbi = [example_disturbo[disturbo] for disturbo, _ in top3]
     return top3_disturbi
 
+def detect_disorders(user_input: str) -> list:
+    """
+    Analyze user input text to extract potential disorder-related expressions.
+
+    Combines named entity recognition, noun phrase matching, and lexical heuristics.
+
+    Args:
+        user_input (str): The user's question or statement.
+
+    Returns:
+        list: Unique disorder-related terms found in the input.
+    """
+    DISEASE_KEYWORDS = {
+        "disorder", "syndrome", "disease", "condition", "distress",
+        "psychosis", "depression", "anxiety", "phobia", "deficit", "nervosa",
+        "symptomatic", "symptom", "induced", "mild", "moderate", "severe", "profound",
+        "impairment", "type", "unspecified", "with", "due", "episode", "acute"}
+
+    nlp = spacy.load("en_core_web_sm")  # Load English spaCy model
+    doc = nlp(user_input)  # Process text
+    terms = set()
+
+    # Named entities with disease/condition labels
+    for ent in doc.ents:
+        if ent.label in {"DISEASE", "CONDITION"}:
+            terms.add(ent.text.strip())
+
+    # Noun chunks containing disease keywords
+    for chunk in doc.noun_chunks:
+        lower = chunk.text.lower()
+        if any(kw in lower for kw in DISEASE_KEYWORDS):
+            terms.add(chunk.text.strip())
+
+    # Bigrams formed from relevant parts of speech
+    tokens = [t.text for t in doc if t.pos in {"NOUN", "ADJ", "PROPN"}]
+    for a, b in zip(tokens, tokens[1:]):
+        combined = f"{a} {b}"
+        if any(kw in combined.lower() for kw in DISEASE_KEYWORDS):
+            terms.add(combined.strip())
+
+    # Fallback: title-cased nouns or proper nouns
+    if not terms:
+        for token in doc:
+            if token.text.istitle() and token.pos in {"NOUN", "PROPN"}:
+                if token.text.lower() not in {"the", "a", "an", "of", "and", "or"}:
+                    terms.add(token.text.strip())
+
+    # Filter to avoid substrings being repeated
+    final_terms = []
+    for t in sorted(terms, key=len, reverse=True):
+        if not any(t in other for other in final_terms):
+            final_terms.append(t)
+
+    return final_terms
+
 @timed
 def generate_bot_reply(history):
     if not history:
@@ -228,20 +431,29 @@ def generate_bot_reply(history):
 
     icd_info = {}
     icd_docs = []
-    rag_docs = retriever.multi_concept_retrieve(user_input)
     disturbi_sospetti = []
 
-    if is_therapeutic_context:
-        query = pulisci_query(user_input.strip())
-        results = icd_search(query)
-        if results:
-            title = results[0].get("title", "Title unavailable")
-            code = results[0].get("code", results[0].get("theCode", "Code unavailable"))
-            icd_docs.append(f"{title} (Code: {code})")
-            log_icd_result("THERAPY", results[0])
+    rag_docs = retriever.multi_concept_retrieve(user_input)
 
-        rag_txt = "\n".join([doc.page_content for doc in rag_docs])
-        icd_txt = "\n".join(icd_docs)
+    # 🔁 Fallback se il retriever non trova nulla e non è contesto score/therapy
+    if not rag_docs and not (has_score_keywords or is_therapeutic_context or has_new_terms):
+        fallback_icd = icd_search(user_input, "definition")
+        if fallback_icd:
+            result = fallback_icd[0]
+            key = user_input
+            icd_info[key] = result
+            title = result.get("title", "Title unavailable")
+            code = result.get("code", result.get("theCode", "Code unavailable"))
+            definition = result.get("definition", {})
+            if isinstance(definition, dict):
+                definition = definition.get("value", "") or definition.get("@value", "")
+            elif not isinstance(definition, str):
+                definition = ""
+            entry = f"{title} (Code: {code})\nDefinition: {definition}"
+            icd_docs.append(entry)
+            log_icd_result(key, result)
+
+    if is_therapeutic_context:
         print("[CONTEXT] THERAPY – analyzing therapy transcript")
         prompt = (
             "You are a clinical assistant analyzing psychotherapy session transcripts.\n"
@@ -258,7 +470,7 @@ def generate_bot_reply(history):
         top3_disturbi = get_top_3_disturbi(disturbi_sospetti)
         for disturbo in top3_disturbi:
             nome_disturbo = disturbo.get("disturbo", "")
-            results = icd_search(nome_disturbo)
+            results = icd_search(nome_disturbo, "clinical")
             if results:
                 key = f"{disturbo.get('test')} - {nome_disturbo}"
                 icd_info[key] = results[0]
@@ -291,7 +503,7 @@ def generate_bot_reply(history):
         disturbi_sospetti = mappa_punteggi_a_disturbi(punteggi)
         for disturbo in disturbi_sospetti:
             nome_disturbo = disturbo.get("disturbo", "")
-            results = icd_search(nome_disturbo)
+            results = icd_search(nome_disturbo, "diagnosis")
             if results:
                 key = f"{disturbo.get('test')} - {nome_disturbo}"
                 icd_info[key] = results[0]
@@ -318,8 +530,38 @@ def generate_bot_reply(history):
     
 
     else:
+        # Pulisci la query direttamente qui dentro
+        cleaned_input = user_input.lower()
+        cleaned_input = re.sub(r'\b(what|who|is|are|the|a|an|define|explain|tell me about|please|can you)\b', '', cleaned_input)
+        cleaned_input = re.sub(r'[^\w\s]', '', cleaned_input)
+        cleaned_input = cleaned_input.strip()
+
+        disturbi = [cleaned_input.capitalize()] if cleaned_input else []
+
+        icd_docs = []
+        if disturbi:
+            results = icd_search(disturbi, "definition")
+            if results:
+                result = results[0]
+                key = disturbi[0]
+                icd_info[key] = result
+                title = result.get("title", "Title unavailable")
+                code = result.get("code", result.get("theCode", "Code unavailable"))
+                definition = result.get("definition", {})
+                if isinstance(definition, dict):
+                    definition = definition.get("value", "") or definition.get("@value", "")
+                elif not isinstance(definition, str):
+                    definition = ""
+                entry = f"{title} (Code: {code})\nDefinition: {definition}"
+                icd_docs.append(entry)
+                log_icd_result(key, result)
+        else:
+            print("[ICD] No disorders detected by detect_disorders.")
+
         rag_txt = "\n".join([doc.page_content for doc in rag_docs])
+        icd_txt = "\n".join(icd_docs)
         print("[CONTEXT] GENERAL – searching for mental disorder or psychological concept")
+
         prompt = (
             "You are a clinical assistant expert in mental health disorders and psychological tools.\n"
             "Always respond in English.\n"
@@ -332,7 +574,7 @@ def generate_bot_reply(history):
             f"{icd_txt}\n\n"
             "Provide a clear and informative response:"
         )
-    
+
 
 # Invio al modello e aggiornamento della cronologia
     reply = ask_llama(prompt)
