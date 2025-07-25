@@ -44,7 +44,6 @@ def get_icd_token(client_id, client_secret):
 # === Search ICD-11 for a term ===
 @timed
 def icd_search(term: str, question_type: str) -> list[dict]:
-    
     """
     Searches the ICD-11 API using the provided term and returns cleaned entity data.
     """
@@ -56,20 +55,27 @@ def icd_search(term: str, question_type: str) -> list[dict]:
         'Accept-Language': 'en'
     }
 
-    
 
     try:
         response = requests.get(search_url, headers=headers, timeout=10)
         response.raise_for_status()
     except requests.RequestException as e:
+        print(f"[ICD_ERROR] Search request failed: {e}")
         return []
 
     try:
         entities = response.json().get('destinationEntities', [])
         
+
+        if not entities:
+            return []
+
         sorted_entities = sorted(entities, key=lambda x: float(x.get('score', 0)), reverse=True)
         best_match = sorted_entities[0]
-    
+        if float(best_match.get('score', 0)) < 0.8:
+            print("[ICD] Best match score below threshold.")
+            return []
+
         if question_type in ("clinical", "definition"):
             entity_url = best_match.get("id")
             if not entity_url:
@@ -95,104 +101,18 @@ def icd_search(term: str, question_type: str) -> list[dict]:
 
                 if not full_entity.get("definition"):
                     full_entity["definition"] = "No definition available from ICD-11."
-
-               
                 return [full_entity]
 
             except requests.RequestException as e:
-                print(f"[ICD_ERROR] Failed to retrieve full entity: {e}")
+
                 return []
 
         else:
-            print("[ICD] Returning best match stub (no enrichment).")
             return [best_match]
 
     except Exception as e:
+
         return []
-
-
-def icd_lookup_cleaned_term(term):
-    # Pulizia base (esempio)
-    clean_term = term.lower().strip()
-
-    # Endpoint ICD-11 API (esempio, modifica con il tuo URL)
-    url = f"https://icd11restapi.who.int/icd11/2023/mms/search?term={clean_term}&matchMethod=exactMatch&limit=5"
-
-    headers = {
-        "Accept": "application/json",
-        # Se serve, aggiungi qui token o altre intestazioni
-    }
-
-    response = requests.get(url, headers=headers)
-
-    if response.status_code == 200:
-        data = response.json()
-        # Qui estrai i risultati importanti dal JSON
-        results = []
-        for item in data.get("destinationEntities", []):
-            title = item.get("title", {}).get("value", "N/A")
-            code = item.get("code", "N/A")
-            definition = item.get("definition", [{}])[0].get("value", "No definition available")
-            results.append({"title": title, "code": code, "definition": definition})
-        return results
-    else:
-        return None
-    
-
-def get_icd_info_from_input(user_input: str) -> list[dict]:
-    """
-    Estrae un possibile disturbo dal testo dell'utente, lo pulisce e cerca info ICD-11.
-    Restituisce una lista di dizionari con 'title', 'code' e 'definition'.
-    """
-    cleaned = pulisci_query(user_input)
-    print(f"[DEBUG] Cleaned input for ICD extraction: '{cleaned}'")
-
-    disturbi = detect_disorders(cleaned)
-    if not disturbi:
-        print("[ICD INFO] Nessun disturbo riconosciuto.")
-        return []
-
-    results = []
-    for disturbo in disturbi:
-        res = icd_lookup_cleaned_term(disturbo)
-        if not res:
-            print(f"[ICD INFO] Nessun risultato per '{disturbo}'")
-            continue
-
-        r = res[0]
-        title = r.get("title", "N/A")
-        code = r.get("code", r.get("theCode", "N/A"))
-        raw_def = r.get("definition", {})
-        if isinstance(raw_def, dict):
-            definition = raw_def.get("value", "") or raw_def.get("@value", "")
-        else:
-            definition = raw_def or ""
-
-        results.append({
-            "term": disturbo,
-            "title": title,
-            "code": code,
-            "definition": definition
-        })
-
-    return results
-
-
-def format_icd_info_for_display(icd_data: list[dict]) -> str:
-    """
-    Format ICD data (title, code, definition) as a readable block like 'Top 3 Scores'.
-    """
-    if not icd_data:
-        return "No ICD-11 information found."
-
-    output = "[ICD-11 Results]\n"
-    for item in icd_data:
-        output += (
-            f"\n• Disorder: {item['title']} (Code: {item['code']})\n"
-            f"  Definition: {item['definition']}\n"
-        )
-    return output
-
 
 
 # === Print an ICD search result in readable format ===
@@ -437,6 +357,7 @@ def generate_bot_reply(history):
 
     # 🔁 Fallback se il retriever non trova nulla e non è contesto score/therapy
     if not rag_docs and not (has_score_keywords or is_therapeutic_context or has_new_terms):
+        
         fallback_icd = icd_search(user_input, "definition")
         if fallback_icd:
             result = fallback_icd[0]
@@ -476,7 +397,7 @@ def generate_bot_reply(history):
                 icd_info[key] = results[0]
                 title = results[0].get("title", "Title unavailable")
                 code = results[0].get("code", results[0].get("theCode", "Code unavailable"))
-                definition = results[0].get("definition", {}).get("value", "")
+                definition = results[0]
                 icd_docs.append(f"{title} (Code: {code}) {definition}")
                 log_icd_result(key, results[0])
         icd_txt = "\n".join(icd_docs)
@@ -530,31 +451,37 @@ def generate_bot_reply(history):
     
 
     else:
-        # Pulisci la query direttamente qui dentro
+    # Pulisci la query direttamente qui dentro
         cleaned_input = user_input.lower()
         cleaned_input = re.sub(r'\b(what|who|is|are|the|a|an|define|explain|tell me about|please|can you)\b', '', cleaned_input)
         cleaned_input = re.sub(r'[^\w\s]', '', cleaned_input)
         cleaned_input = cleaned_input.strip()
 
         disturbi = [cleaned_input.capitalize()] if cleaned_input else []
-
         icd_docs = []
+
         if disturbi:
             results = icd_search(disturbi, "definition")
             if results:
                 result = results[0]
-                key = disturbi[0]
-                icd_info[key] = result
-                title = result.get("title", "Title unavailable")
-                code = result.get("code", result.get("theCode", "Code unavailable"))
-                definition = result.get("definition", {})
-                if isinstance(definition, dict):
-                    definition = definition.get("value", "") or definition.get("@value", "")
-                elif not isinstance(definition, str):
-                    definition = ""
-                entry = f"{title} (Code: {code})\nDefinition: {definition}"
-                icd_docs.append(entry)
-                log_icd_result(key, result)
+
+                if isinstance(result, dict):
+                    key = disturbi[0]
+                    icd_info[key] = result
+                    title = result.get("title", "Title unavailable")
+                    code = result.get("code", result.get("theCode", "Code unavailable"))
+                    definition = result.get("definition", {})
+                    if isinstance(definition, dict):
+                        definition = definition.get("value", "") or definition.get("@value", "")
+                    elif not isinstance(definition, str):
+                        definition = ""
+                    entry = f"{title} (Code: {code})\nDefinition: {definition}"
+                    icd_docs.append(entry)
+                    log_icd_result(key, result)
+                else:
+                    print(f"[ICD] Unexpected result format: {type(result)} – {result}")
+            else:
+                print("[ICD] No ICD results.")
         else:
             print("[ICD] No disorders detected by detect_disorders.")
 
