@@ -1,14 +1,21 @@
-deep-translator
-gradio
-requests
-pyyaml
-langchain
-langchain-community
-langchain-huggingface
-sentence-transformers
-chromadb
-langdetect
-transformers 
-sentencepiece
-spacy
-en_core_web_sm
+# NLP
+spacy==3.7.2
+transformers==4.41.1
+sentencepiece  # Necessario per alcuni modelli MarianMT
+
+# Web e API
+requests==2.31.0
+gradio==4.32.0
+
+# YAML e file handling
+PyYAML==6.0.1
+
+# LangChain e vectorstore
+langchain==0.2.3
+langchain-community==0.2.3
+chromadb==0.4.24
+huggingface-hub==0.23.0
+
+# Utility
+numpy>=1.24.0  # Richiesto da Chroma o embeddings
+

@@ -1,8 +1,10 @@
 # PsyBot
 
+
+
 ## Requisiti
 
-- Python 3.13.3 -> https://www.python.org/downloads/release/python-3133/
+- Python 3.10.0 -> https://www.python.org/downloads/release/python-3100/
 
 - LM Studio -> https://lmstudio.ai/
 
@@ -29,13 +31,13 @@ Cercare:
 
 TheBloke/Llama-2-7B-Chat-GGUF
 
-![alt text](image.png)
+![llama](Immagini/llama.png)
     
 Selezionare nel menù a tendina la quantizzazione  desiderata (più è alta la quantizzazione più è preciso il modello, ma anche più lento)
 
 ![Tendina](Immagini/tendina.png)    
 
-si consiglia la versione q4_k_m o superiori a seconda delle componenti.
+si consiglia la versione q4_k_s o superiori a seconda delle componenti.
 
 Una volta installato dirigetsi nell'icona (sempre in alto a sinistra) che rappresenta un terminale (Developer).
 ![Term](Immagini/terminale.png)
@@ -64,8 +66,12 @@ Una volta aperto bash entrare nella cartella del progetto e inserire il comando:
 Se vi sono ancora warning per librerie e dipendenze allora usare il comando:
     python -m pip install -r requirements.txt
 
+NOTE:
+    Dopo l'installazione, eseguire anche:
+    python -m spacy download en_core_web_sm
+
 Una volta finita l'installazione dei requirements siamo pronti ad avviare il server tramite il comando:
-    python app.py
+    python src\app.py
 
 Ci troveremo nell'interfaccia Gradio dopo che avremo cliccato sul localhost fornito dal terminale.
 
